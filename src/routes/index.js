@@ -1,9 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import login from "../pages/login";
 import welcome from "../pages/welcome";
-import principal from "../pages/principal";
+import home from "../pages/home";
 import ForgotPasswordScreen from "../pages/reset";
 import Create from "../pages/create";
+import box from "../components/box";
 const Stack = createNativeStackNavigator();
 export default function Routes(){
 
@@ -23,8 +24,8 @@ return(
     />
 
 <Stack.Screen
-    name="principal"
-    component={principal}
+    name="home"
+    component={home}
     options={{headerShown: false}}
     />
 
@@ -40,9 +41,15 @@ return(
     component={Create}
     options={{headerShown: false}}
     />
+
+<Stack.Screen
+    name="box"
+    component={box}
+    options={{headerShown: false}}
+    />
 </Stack.Navigator>
 
 )
 
-
+box
 }

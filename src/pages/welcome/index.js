@@ -54,7 +54,7 @@ backgroundColor:'#171615'
   },
   containerForm:{
     flex:1,
-    backgroundColor:'#0affed',
+    backgroundColor:'#126782',
 borderTopLeftRadius:25,
 borderTopRightRadius:25,
 paddingStart:'5%',
@@ -65,9 +65,11 @@ paddingEnd:'5%'
     fontWeight:'bold',
     marginTop:28,
     marginBottom:12,
+    color:'#FFF'
   },
   text:{
-color:'#a1a1a1'
+color:'#FFF',
+
 
   },
   button:{

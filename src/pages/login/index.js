@@ -34,15 +34,15 @@ style={styles.reset}
 onPress={() =>navigation.navigate('ForgotPasswordScreen')}><Text> Esqueceu a senha?</Text></TouchableOpacity>
 
 <TouchableOpacity style={styles.button}
-onPress={() =>navigation.navigate('principal')}>
+onPress={() =>navigation.navigate('home')}>
   <Text style={styles.buttontext}>Acessar</Text>
 </TouchableOpacity>
 
 
-<View style={{flexDirection: 'row'}}>
-  <Text style={{fontSize:16,marginTop: 36,color:'#171615'}}>__________________    </Text>
-  <Text style={{fontSize:16,marginTop: 41,color:'#171615'}}>Acesse com</Text>
-  <Text style={{fontSize:16,marginTop: 36,color:'#171615'}}>    __________________</Text>
+<View style={{flexDirection: 'row',marginTop:50}}>
+  <Text style={{fontSize:16,marginTop: 36,color:'#FFF'}}>__________________    </Text>
+  <Text style={{fontSize:16,marginTop: 41,color:'#FFF'}}>Acesse com</Text>
+  <Text style={{fontSize:16,marginTop: 36,color:'#FFF'}}>    __________________</Text>
 </View>
 <View style={{flexDirection: 'row',marginTop:60, justifyContent:'center', alignContent:'center'}}>
   <AntDesign name="google" size={40} color="#db4a39" style={{marginRight:44}}/>
@@ -51,9 +51,9 @@ onPress={() =>navigation.navigate('principal')}>
 </View>
 <View style={{ alignItems: 'center' }}>
 <Text style = {{color:'#171615',marginTop: 50}}>
-  Não possui acesso ?{' '}
+  Não possui acesso ?{'   '}
   <TouchableOpacity  onPress={() =>navigation.navigate('Create')}>
-  <Text style={{color: '#e3492b', textDecorationLine: 'underline',marginTop:33}}>
+  <Text style={{color: '#e3492b',marginTop:50}}>
   Cadastre-se
   </Text></TouchableOpacity>
   
@@ -83,7 +83,7 @@ message:{
   color:'#fff'
 },
 containerform:{
-  backgroundColor:'#0affed',
+  backgroundColor:'#126782',
   flex:1,
   borderTopLeftRadius:25,
   borderTopRightRadius:25,

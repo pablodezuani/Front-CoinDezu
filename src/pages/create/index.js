@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -69,12 +69,9 @@ const CadastroScreen = () => {
           secureTextEntry={true}
         />
 
-        <Button
-        style={{borderRadius:18}}
-          title="Cadastrar"
-          onPress={handleCadastro}
-          color="#171615"
-        />
+     <TouchableOpacity style={styles.button}>
+      <Text>Cadastrar</Text>
+     </TouchableOpacity>
 
 <View style={{flexDirection: 'row'}}>
   <Text style={{fontSize:16,marginTop: 36,color:'#171615'}}>__________________    </Text>
@@ -108,7 +105,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   containerform: {
-    backgroundColor: '#0affed',
+    backgroundColor: '#126782',
     flex: 1,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -124,21 +121,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     height: 40,
     marginBottom: 12,
-    fontSize: 16,
+    fontSize: 14,
   },
   button: {
     backgroundColor: '#FFF',
-    width: '100%',
+    width: '80%',
     borderRadius: 18,
     paddingVertical: 8,
     marginTop: 14,
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft:35
+  ,
   },
   buttonText: {
     color: '#FFF',
     fontSize: 18,
     fontWeight: 'bold',
+
   },
   buttonRegister: {
     marginTop: 38,
