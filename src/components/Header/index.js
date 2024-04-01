@@ -120,20 +120,23 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: 'transparent',
       alignItems:'flex-start',
-  
       justifyContent:'flex-end',
+      marginLeft:6
     },
     modalContent: {
       backgroundColor: '#171615',
       width:400,
       padding: 20,
-      borderRadius: 10,
+      borderTopLeftRadius:10,
+      borderTopRightRadius:10,
       alignItems: 'center',
+    
     },
     modalTitle: {
       fontSize: 18,
       marginBottom: 20,
       fontWeight: 'bold',
+      color:'white'
       
     },
     modalOption: {

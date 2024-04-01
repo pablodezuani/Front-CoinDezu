@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, ScrollView, Modal, TouchableWithoutFeedback, Input,Button} from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet, ScrollView, Modal, TouchableWithoutFeedback,Button, TextInput,Alert } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import RNPickerSelect from 'react-native-picker-select';
@@ -7,6 +7,17 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Actions() {
 
+// Lançar que foi enviado 
+
+const handleLancar = () => {
+  // Aqui você pode fazer qualquer lógica necessária antes de fechar o modal
+
+  // Fechando o modal
+  setModalVisibleEntradas(false);
+
+  // Exibindo o alerta de sucesso
+  Alert.alert('Sucesso', 'Entrada lançada com sucesso!');
+};
   // Estados para controlar a visibilidade de cada modal
   const [modalVisibleEntradas, setModalVisibleEntradas] = useState(false);
   const [modalVisibleBoleto, setModalVisibleBoleto] = useState(false);
@@ -15,9 +26,7 @@ export default function Actions() {
   const [modalVisibleCartao, setModalVisibleCartao] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const navigation =useNavigation();
-  const handleGoToCaixinha = () => {
-  }
-
+ 
 
   return (
     <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -91,25 +100,26 @@ placeholder={{ label: 'Tipo de entrada', value: null }}
     { label: 'Outros ', value: 'Outros' },
   ]}
 />
- <Input
-                style={{ height: 50, width: 320, borderColor: 'gray', borderWidth: 1, borderRadius: 0, padding: 5 }}
-                margin="4px 0px 4px 4px"
-                placeholder="Nome da entrada"
-                textAlign="center"
-                title="Nome da entrada"
-              />
+<Text
+style={styles.Select}
+>Nome da entrada</Text>
+<TextInput
+placeholder="Nome da entrada"
+style={styles.input}/>
 
-<Input
-                style={{ height: 50, width: 320, borderColor: 'gray', borderWidth: 1, borderRadius: 5, padding: 5 }}
-                margin="4px 0px 4px 4px"
-                placeholder="Nome da entrada"
-                textAlign="center"
-                title="valor da entrada"
-              />
-            
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', width: 200 }}>
-                <Button title="Lançar" />
-              </View>
+<Text
+style={styles.Select}
+>Valor da entrada</Text>
+<TextInput
+  style={styles.input}
+placeholder="Valor da entrada"
+keyboardType="numeric"
+/>
+<Text
+style={styles.Select}
+>Tipo de entrada</Text>
+<TouchableOpacity  style={styles.Botao}  onPress={handleLancar}><Text style={styles.textbotao}>Lançar</Text></TouchableOpacity>
+             
             </View>
           </TouchableWithoutFeedback>
         </View>
@@ -226,18 +236,18 @@ const styles = StyleSheet.create({
   },
   modalBackground: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0.9,0.5,0.5,0.7)',
     justifyContent:'flex-end',
     alignItems: 'center',
     padding:25,
   
   },
   modalContent: {
-    backgroundColor: '#C1F4F8',
+    backgroundColor: '#126782',
     padding: 20,
     borderRadius: 18,
     elevation: 5,
-    height:600,
+    height:550,
     width:380,
   },
   closeIcon: {
@@ -248,19 +258,37 @@ const styles = StyleSheet.create({
   Titlehome:{
     marginTop:16,
     fontSize:18,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    color:'white'
   },
 
 Select:{
 marginTop:24,
 marginLeft:12,
- color:'#8C2A96',
+ color:'white',
  fontWeight:'bold'
 },
+input:{
+height: 40,
+margin: 13,
+borderWidth: 0.5,
+padding: 10,
+borderRadius:8,
+},
+Botao:{
+  backgroundColor:'black',
+  height:40,
+  width:315,
+justifyContent:'center',
+marginLeft:15,
+marginTop:20,
+borderRadius:18
 
-date:{
-  width:350,
-}
-
+},
+textbotao:{
+color:'white',
+alignSelf:'center',
+fontWeight:'bold'
+},
 });
 
