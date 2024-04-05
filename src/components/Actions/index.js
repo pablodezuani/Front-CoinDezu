@@ -110,11 +110,7 @@ style={styles.input}/>
 <Text
 style={styles.Select}
 >Valor da entrada</Text>
-<TextInput
-  style={styles.input}
-placeholder="Valor da entrada"
-keyboardType="numeric"
-/>
+ 
 <Text
 style={styles.Select}
 >Tipo de entrada</Text>
@@ -174,10 +170,14 @@ style={styles.Select}
         <TouchableWithoutFeedback >
           <View style={styles.modalBackground}>
             <View style={styles.modalContent}>
-              <Text>Conteúdo do modal para Pix</Text>
+        
               <TouchableOpacity onPress={() => setModalVisiblePix(false)} style={styles.closeIcon}>
                 <Feather name="x" size={24} color="black" />
               </TouchableOpacity>
+              <Text style={styles.Titlehome}>  Adicione o Pix</Text>
+              <Text
+style={styles.Select}
+>Nome da entrada</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>

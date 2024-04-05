@@ -40,15 +40,18 @@ onPress={() =>navigation.navigate('home')}>
 
 
 <View style={{flexDirection: 'row',marginTop:50}}>
-  <Text style={{fontSize:16,marginTop: 36,color:'#FFF'}}>__________________    </Text>
+ <Text style={{fontSize:16,marginTop: 36,color:'#FFF'}}>__________________    </Text> 
   <Text style={{fontSize:16,marginTop: 41,color:'#FFF'}}>Acesse com</Text>
-  <Text style={{fontSize:16,marginTop: 36,color:'#FFF'}}>    __________________</Text>
+ <Text style={{fontSize:16,marginTop: 36,color:'#FFF'}}>    _________________</Text> 
 </View>
-<View style={{flexDirection: 'row',marginTop:60, justifyContent:'center', alignContent:'center'}}>
-  <AntDesign name="google" size={40} color="#db4a39" style={{marginRight:44}}/>
-
-<AntDesign name="apple1" size={40} color="black" />
-</View>
+<View style={{ flexDirection: 'row', marginTop: 60, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ backgroundColor: '#ffffff', padding: 10, borderRadius: 10, marginRight: 20 }}>
+        <AntDesign name="google" size={40} color="#db4a39" />
+      </View>
+      <View style={{ backgroundColor: '#ffffff', padding: 10, borderRadius: 10 }}>
+        <AntDesign name="apple1" size={40} color="black" />
+      </View>
+    </View>
 <View style={{ alignItems: 'center' }}>
 <Text style = {{color:'#171615',marginTop: 50}}>
   Não possui acesso ?{'   '}

@@ -70,19 +70,11 @@ const CadastroScreen = () => {
         />
 
      <TouchableOpacity style={styles.button}>
-      <Text>Cadastrar</Text>
+  
+      <Text style={styles.buttonText}>Cadastrar</Text>
      </TouchableOpacity>
 
-<View style={{flexDirection: 'row'}}>
-  <Text style={{fontSize:16,marginTop: 36,color:'#171615'}}>__________________    </Text>
-  <Text style={{fontSize:16,marginTop: 41,color:'#171615'}}>Cadastrar com</Text>
-  <Text style={{fontSize:16,marginTop: 36,color:'#171615'}}>    __________________</Text>
-</View>
-<View style={{flexDirection: 'row',marginTop:20, justifyContent:'center', alignContent:'center'}}>
-  <AntDesign name="google" size={40} color="#db4a39" style={{marginRight:44}}/>
 
-<AntDesign name="apple1" size={40} color="black" />
-</View>
 
       </Animatable.View>
     </View>
@@ -114,7 +106,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 15,
-    marginTop: 28
+    marginTop: 28,
+    color:'white'
    
   },
   input: {
@@ -122,9 +115,10 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 12,
     fontSize: 14,
+    color:'white'
   },
   button: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#171615',
     width: '80%',
     borderRadius: 18,
     paddingVertical: 8,
@@ -135,8 +129,8 @@ const styles = StyleSheet.create({
   ,
   },
   buttonText: {
-    color: '#FFF',
-    fontSize: 18,
+    color: '#FFFF',
+    fontSize: 16,
     fontWeight: 'bold',
 
   },
