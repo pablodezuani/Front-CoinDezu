@@ -4,7 +4,7 @@ import welcome from "../pages/welcome";
 import home from "../pages/home";
 import ForgotPasswordScreen from "../pages/reset";
 import Create from "../pages/create";
-import box from "../components/box";
+import box from "../pages/box";
 const Stack = createNativeStackNavigator();
 export default function Routes(){
 
