@@ -24,7 +24,6 @@ const handleLancar = () => {
   const [modalVisibleCompras, setModalVisibleCompras] = useState(false);
   const [modalVisiblePix, setModalVisiblePix] = useState(false);
   const [modalVisibleCartao, setModalVisibleCartao] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
   const navigation =useNavigation();
  
 

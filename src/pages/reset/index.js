@@ -21,7 +21,7 @@ const ForgotPasswordScreen = () => {
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      <TouchableOpacity style={styles.button} onPress={handleResetPassword}>
+      <TouchableOpacity style={styles.button} onPress={alert('Sucesso!!                                                          E-mail enviado com sucesso!')}>
         <Text style={styles.buttonText}>Enviar E-mail</Text>
       </TouchableOpacity>
     </View>
@@ -59,16 +59,19 @@ const styles = StyleSheet.create({
     color:'white',
   },
   button: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#0affed',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
+    position:'absolute',
+    borderRadius:50,
+    backgroundColor:'#126782',
+    paddingVertical:8,
+    width:'60%',
+    alignSelf:'center',
+    bottom:'15%',  
+    alignItems:'center',
+    justifyContent:'center'
   },
   
   buttonText: {
-    color: '#171615',
+    color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
   },
