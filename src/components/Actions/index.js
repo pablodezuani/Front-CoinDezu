@@ -44,11 +44,11 @@ const handleLancar = () => {
         <Text style={styles.buttonlabel}>Caixinha</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisibleBoleto(true)}>
+      <TouchableOpacity style={styles.actionButton}onPress={() =>navigation.navigate('Trips')}>
         <View style={styles.ButtonArea}>
           <AntDesign name="barcode" size={24} color="#8C2A96" />
         </View>
-        <Text style={styles.buttonlabel}>Boleto</Text>
+        <Text style={styles.buttonlabel}>Viagem</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisibleCompras(true)}>
