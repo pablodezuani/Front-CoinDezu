@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Modal, TextInput, Button } from 'react-native';
-import { Header } from 'react-native-elements';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Modal } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import ConfettiCannon from 'react-native-confetti-cannon';
+import { TextInputMask } from 'react-native-masked-text';
 
 const GoalDetailScreen = () => {
   const [goalValue, setGoalValue] = useState(3500);
@@ -26,7 +26,7 @@ const GoalDetailScreen = () => {
   }, [progress]);
 
   const handleTransaction = () => {
-    const value = parseFloat(amount);
+    const value = parseFloat(amount.replace(/[^\d,-]/g, '').replace(',', '.'));
     if (isNaN(value) || value <= 0) {
       alert('Por favor, insira um valor válido.');
       return;
@@ -58,26 +58,35 @@ const GoalDetailScreen = () => {
     setModalVisible(true);
   };
 
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(value);
+  };
+
   return (
     <View style={styles.container}>
-     
       <View style={styles.contentContainer}>
         <Text style={styles.goalName}>{goalName}</Text>
-        <Text style={styles.goalTotal}>Total da Meta: {goalTotal}</Text>
-        <Text style={styles.goalValue}>Valor Atual: {goalValue}</Text>
+        <Text style={styles.goalTotal}>Total da Meta: {formatCurrency(goalTotal)}</Text>
+        <Text style={styles.goalValue}>Valor Atual: {formatCurrency(goalValue)}</Text>
         <View style={styles.progressContainer}>
           <AnimatedCircularProgress
             size={200}
             width={30}
             fill={progress * 100}
-            tintColor="#6200EE"
+            tintColor="#126782"
             backgroundColor="#e6e6e6"
             lineCap="round"
             rotation={0}
             duration={1000}
-          />
+          >
+            {() => (
+              <Text style={styles.progressText}>{progressPercentage}%</Text>
+            )}
+          </AnimatedCircularProgress>
         </View>
-        <Text style={styles.progressText}>{progressPercentage}%</Text>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity style={styles.button} onPress={() => openModal(true)}>
             <Text style={styles.buttonText}>Depositar</Text>
@@ -95,7 +104,7 @@ const GoalDetailScreen = () => {
               item.type === 'Entrada' ? styles.income : styles.expense
             ]}>
               <Text style={styles.transactionText}>
-                {item.date} - {item.type}: {item.amount}
+                {item.date} - {item.type}: {formatCurrency(item.amount)}
               </Text>
             </View>
           )}
@@ -119,16 +128,26 @@ const GoalDetailScreen = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Text style={styles.modalTitle}>{isDeposit ? 'Depositar' : 'Sacar'}</Text>
-            <TextInput
+            <TextInputMask
               style={styles.input}
-              keyboardType="numeric"
-              placeholder="Valor"
+              type={'money'}
+              options={{
+                precision: 2,
+                separator: ',',
+                delimiter: '.',
+                unit: 'R$ ',
+                suffixUnit: ''
+              }}
               value={amount}
               onChangeText={setAmount}
             />
             <View style={styles.modalButtonsContainer}>
-              <Button title="Cancelar" onPress={() => setModalVisible(false)} />
-              <Button title="Confirmar" onPress={handleTransaction} />
+              <TouchableOpacity style={styles.modalButton} onPress={() => setModalVisible(false)}>
+                <Text style={styles.modalButtonText}>Cancelar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.modalButton} onPress={handleTransaction}>
+                <Text style={styles.modalButtonText}>Confirmar</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -141,47 +160,57 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#171615',
-  },
-  headerTitle: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
+    paddingTop: 40,  // Adiciona espaçamento no topo
   },
   contentContainer: {
     padding: 20,
     alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
   },
   goalName: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#fff',
+    textAlign: 'center',
   },
   goalTotal: {
     fontSize: 18,
     marginBottom: 5,
+    color: '#fff',
+    textAlign: 'center',
   },
   goalValue: {
     fontSize: 18,
     marginBottom: 20,
+    color: '#fff',
+    textAlign: 'center',
   },
   progressContainer: {
     marginVertical: 20,
+    alignItems: 'center',
   },
   progressText: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
+    color: '#126782',
+    position: 'absolute',
+    alignSelf: 'center',
   },
   buttonsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     width: '100%',
     marginVertical: 20,
   },
   button: {
-    backgroundColor: '#6200EE',
+    backgroundColor: '#126782',
     padding: 15,
     borderRadius: 5,
+    flex: 1,
+    marginHorizontal: 10,
+    alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
@@ -190,6 +219,7 @@ const styles = StyleSheet.create({
   },
   transactionList: {
     width: '100%',
+    flex: 1,
   },
   transactionItem: {
     backgroundColor: '#f9f9f9',
@@ -248,6 +278,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
+  },
+  modalButton: {
+    backgroundColor: '#126782',
+    padding: 10,
+    borderRadius: 5,
+    flex: 1,
+    marginHorizontal: 5,
+    alignItems: 'center',
+  },
+  modalButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
 

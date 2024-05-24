@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexDirection: 'row',
+ 
   },
   goalTouchable: {
     marginRight: 12,
