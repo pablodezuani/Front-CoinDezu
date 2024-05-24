@@ -12,6 +12,7 @@ const GoalDetailScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isDeposit, setIsDeposit] = useState(true);
   const [amount, setAmount] = useState('');
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const confettiRef = useRef(null);
 
   const goalName = 'Economizar para Viagem';
@@ -65,16 +66,32 @@ const GoalDetailScreen = () => {
     }).format(value);
   };
 
+  const openDeleteModal = () => {
+    setDeleteModalVisible(true);
+  };
+
+  const handleDeleteAllTransactions = () => {
+    setTransactions([]);
+    setGoalValue(0);
+    setDeleteModalVisible(false);
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.contentContainer}>
+      <TouchableOpacity  style={styles.excluir}onPress={openDeleteModal}>
+          <Text style={styles.deleteText}>Excluir</Text>
+        </TouchableOpacity>
+      <View style={styles.header}>
         <Text style={styles.goalName}>{goalName}</Text>
+        
+      </View>
+      <View style={styles.contentContainer}>
         <Text style={styles.goalTotal}>Total da Meta: {formatCurrency(goalTotal)}</Text>
         <Text style={styles.goalValue}>Valor Atual: {formatCurrency(goalValue)}</Text>
         <View style={styles.progressContainer}>
           <AnimatedCircularProgress
             size={200}
-            width={30}
+            width={19}
             fill={progress * 100}
             tintColor="#126782"
             backgroundColor="#e6e6e6"
@@ -152,6 +169,27 @@ const GoalDetailScreen = () => {
           </View>
         </View>
       </Modal>
+
+      <Modal
+        transparent={true}
+        visible={deleteModalVisible}
+        onRequestClose={() => setDeleteModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Confirmar Exclusão</Text>
+            <Text style={styles.modalMessage}>Tem certeza de que deseja excluir todas as transações?</Text>
+            <View style={styles.modalButtonsContainer}>
+              <TouchableOpacity style={styles.modalButton} onPress={() => setDeleteModalVisible(false)}>
+                <Text style={styles.modalButtonText}>Cancelar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.modalButton} onPress={handleDeleteAllTransactions}>
+                <Text style={styles.modalButtonText}>Excluir</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -160,20 +198,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#171615',
-    paddingTop: 40,  // Adiciona espaçamento no topo
+    paddingTop: 40,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    alignItems: 'center',
+  },
+  goalName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  deleteText: {
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize:15,
   },
   contentContainer: {
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-  },
-  goalName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#fff',
-    textAlign: 'center',
   },
   goalTotal: {
     fontSize: 18,
@@ -190,11 +237,12 @@ const styles = StyleSheet.create({
   progressContainer: {
     marginVertical: 20,
     alignItems: 'center',
+    color: 'white',
   },
   progressText: {
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: '#126782',
+    color: '#FFFF',
     position: 'absolute',
     alignSelf: 'center',
   },
@@ -226,6 +274,9 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 5,
     borderRadius: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
@@ -265,6 +316,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  modalMessage: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  excluir:{
+alignContent:'center'
   },
   input: {
     width: '100%',
