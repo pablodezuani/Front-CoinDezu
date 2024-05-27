@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList, Modal } from 'react
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import { TextInputMask } from 'react-native-masked-text';
+import { Ionicons } from '@expo/vector-icons'; // Importar ícones do Ionicons
 
 const GoalDetailScreen = () => {
   const [goalValue, setGoalValue] = useState(3500);
@@ -78,13 +79,12 @@ const GoalDetailScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity  style={styles.excluir}onPress={openDeleteModal}>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.deleteButton} onPress={openDeleteModal}>
           <Text style={styles.deleteText}>Excluir</Text>
         </TouchableOpacity>
-      <View style={styles.header}>
-        <Text style={styles.goalName}>{goalName}</Text>
-        
       </View>
+      <Text style={styles.goalName}>{goalName}</Text>
       <View style={styles.contentContainer}>
         <Text style={styles.goalTotal}>Total da Meta: {formatCurrency(goalTotal)}</Text>
         <Text style={styles.goalValue}>Valor Atual: {formatCurrency(goalValue)}</Text>
@@ -120,9 +120,17 @@ const GoalDetailScreen = () => {
               styles.transactionItem,
               item.type === 'Entrada' ? styles.income : styles.expense
             ]}>
-              <Text style={styles.transactionText}>
-                {item.date} - {item.type}: {formatCurrency(item.amount)}
-              </Text>
+              <Ionicons
+                name={item.type === 'Entrada' ? 'arrow-down-circle' : 'arrow-up-circle'}
+                size={24}
+                color={item.type === 'Entrada' ? 'green' : 'red'}
+                style={styles.transactionIcon}
+              />
+              <View style={styles.transactionDetails}>
+                <Text style={styles.transactionDate}>{item.date}</Text>
+                <Text style={styles.transactionType}>{item.type}</Text>
+              </View>
+              <Text style={styles.transactionAmount}>{formatCurrency(item.amount)}</Text>
             </View>
           )}
           style={styles.transactionList}
@@ -159,10 +167,10 @@ const GoalDetailScreen = () => {
               onChangeText={setAmount}
             />
             <View style={styles.modalButtonsContainer}>
-              <TouchableOpacity style={styles.modalButton} onPress={() => setModalVisible(false)}>
+              <TouchableOpacity style={[styles.modalButton, styles.cancelButton]} onPress={() => setModalVisible(false)}>
                 <Text style={styles.modalButtonText}>Cancelar</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.modalButton} onPress={handleTransaction}>
+              <TouchableOpacity style={[styles.modalButton, styles.confirmButton]} onPress={handleTransaction}>
                 <Text style={styles.modalButtonText}>Confirmar</Text>
               </TouchableOpacity>
             </View>
@@ -180,10 +188,10 @@ const GoalDetailScreen = () => {
             <Text style={styles.modalTitle}>Confirmar Exclusão</Text>
             <Text style={styles.modalMessage}>Tem certeza de que deseja excluir todas as transações?</Text>
             <View style={styles.modalButtonsContainer}>
-              <TouchableOpacity style={styles.modalButton} onPress={() => setDeleteModalVisible(false)}>
+              <TouchableOpacity style={[styles.modalButton, styles.cancelButton]} onPress={() => setDeleteModalVisible(false)}>
                 <Text style={styles.modalButtonText}>Cancelar</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.modalButton} onPress={handleDeleteAllTransactions}>
+              <TouchableOpacity style={[styles.modalButton, styles.confirmButton]} onPress={handleDeleteAllTransactions}>
                 <Text style={styles.modalButtonText}>Excluir</Text>
               </TouchableOpacity>
             </View>
@@ -202,7 +210,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     paddingHorizontal: 20,
     alignItems: 'center',
   },
@@ -210,11 +218,18 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
+    textAlign: 'center',
+    marginVertical: 20,
+  },
+  deleteButton: {
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
   },
   deleteText: {
-    color: 'red',
+    color: '#fff',
     fontWeight: 'bold',
-    fontSize:15,
+    fontSize: 16,
   },
   contentContainer: {
     padding: 20,
@@ -223,13 +238,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   goalTotal: {
-    fontSize: 18,
+    fontSize: 20,
     marginBottom: 5,
     color: '#fff',
     textAlign: 'center',
   },
   goalValue: {
-    fontSize: 18,
+    fontSize: 20,
     marginBottom: 20,
     color: '#fff',
     textAlign: 'center',
@@ -237,12 +252,11 @@ const styles = StyleSheet.create({
   progressContainer: {
     marginVertical: 20,
     alignItems: 'center',
-    color: 'white',
   },
   progressText: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#FFFF',
+    color: '#fff',
     position: 'absolute',
     alignSelf: 'center',
   },
@@ -270,10 +284,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   transactionItem: {
-    backgroundColor: '#f9f9f9',
-    padding: 10,
+    backgroundColor: '#fff',
+    padding: 15,
     marginVertical: 5,
-    borderRadius: 5,
+    borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -283,8 +297,24 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
-  transactionText: {
+  transactionIcon: {
+    marginRight: 10,
+  },
+  transactionDetails: {
+    flex: 1,
+  },
+  transactionDate: {
+    fontSize: 14,
+    color: '#888',
+  },
+  transactionType: {
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  transactionAmount: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#126782',
   },
   income: {
     borderLeftColor: 'green',
@@ -303,7 +333,7 @@ const styles = StyleSheet.create({
   modalView: {
     width: '80%',
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 20,
     alignItems: 'center',
     shadowColor: '#000',
@@ -313,17 +343,16 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#126782',
   },
   modalMessage: {
     fontSize: 16,
     marginBottom: 20,
     textAlign: 'center',
-  },
-  excluir:{
-alignContent:'center'
+    color: '#333',
   },
   input: {
     width: '100%',
@@ -332,6 +361,8 @@ alignContent:'center'
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
+    fontSize: 18,
+    backgroundColor: '#f0f0f0',
   },
   modalButtonsContainer: {
     flexDirection: 'row',
@@ -339,12 +370,17 @@ alignContent:'center'
     width: '100%',
   },
   modalButton: {
-    backgroundColor: '#126782',
     padding: 10,
     borderRadius: 5,
     flex: 1,
     marginHorizontal: 5,
     alignItems: 'center',
+  },
+  cancelButton: {
+    backgroundColor: '#ff6347',
+  },
+  confirmButton: {
+    backgroundColor: '#126782',
   },
   modalButtonText: {
     color: '#fff',
