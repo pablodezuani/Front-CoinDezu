@@ -3,13 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList, Modal } from 'react
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import { TextInputMask } from 'react-native-masked-text';
-import { Ionicons } from '@expo/vector-icons'; // Importar ícones do Ionicons
+import { Ionicons } from '@expo/vector-icons';
+import LinearGradient from 'react-native-linear-gradient';
 
 const GoalDetailScreen = () => {
   const [goalValue, setGoalValue] = useState(3500);
-  const [transactions, setTransactions] = useState([
-    { id: '1', type: 'Entrada', amount: 3500, date: '2024-05-22' },
-  ]);
+  const [transactions, setTransactions] = useState([{ id: '1', type: 'Entrada', amount: 3500, date: '2024-05-22' }]);
   const [modalVisible, setModalVisible] = useState(false);
   const [isDeposit, setIsDeposit] = useState(true);
   const [amount, setAmount] = useState('');
@@ -61,10 +60,7 @@ const GoalDetailScreen = () => {
   };
 
   const formatCurrency = (value) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(value);
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
   };
 
   const openDeleteModal = () => {
@@ -75,6 +71,24 @@ const GoalDetailScreen = () => {
     setTransactions([]);
     setGoalValue(0);
     setDeleteModalVisible(false);
+  };
+
+  const getProgressColor = (progress) => {
+    if (progress <= 0.5) {
+      // Interpolating between red and yellow
+      const ratio = progress / 0.5;
+      const red = 255;
+      const green = Math.round(255 * ratio);
+      const blue = 0;
+      return `rgb(${red}, ${green}, ${blue})`;
+    } else {
+      // Interpolating between yellow and green
+      const ratio = (progress - 0.5) / 0.5;
+      const red = Math.round(255 * (1 - ratio));
+      const green = 255;
+      const blue = 0;
+      return `rgb(${red}, ${green}, ${blue})`;
+    }
   };
 
   return (
@@ -93,15 +107,13 @@ const GoalDetailScreen = () => {
             size={200}
             width={19}
             fill={progress * 100}
-            tintColor="#126782"
+            tintColor={getProgressColor(progress)}
             backgroundColor="#e6e6e6"
             lineCap="round"
             rotation={0}
             duration={1000}
           >
-            {() => (
-              <Text style={styles.progressText}>{progressPercentage}%</Text>
-            )}
+            {() => <Text style={styles.progressText}>{progressPercentage}%</Text>}
           </AnimatedCircularProgress>
         </View>
         <View style={styles.buttonsContainer}>
@@ -116,10 +128,7 @@ const GoalDetailScreen = () => {
           data={transactions}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <View style={[
-              styles.transactionItem,
-              item.type === 'Entrada' ? styles.income : styles.expense
-            ]}>
+            <View style={[styles.transactionItem, item.type === 'Entrada' ? styles.income : styles.expense]}>
               <Ionicons
                 name={item.type === 'Entrada' ? 'arrow-down-circle' : 'arrow-up-circle'}
                 size={24}
@@ -136,33 +145,16 @@ const GoalDetailScreen = () => {
           style={styles.transactionList}
         />
       </View>
-      {progress >= 1 && (
-        <ConfettiCannon
-          count={200}
-          origin={{ x: -10, y: 0 }}
-          fadeOut
-          ref={confettiRef}
-        />
-      )}
+      {progress >= 1 && <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} fadeOut ref={confettiRef} />}
 
-      <Modal
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
+      <Modal transparent={true} visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Text style={styles.modalTitle}>{isDeposit ? 'Depositar' : 'Sacar'}</Text>
             <TextInputMask
               style={styles.input}
               type={'money'}
-              options={{
-                precision: 2,
-                separator: ',',
-                delimiter: '.',
-                unit: 'R$ ',
-                suffixUnit: ''
-              }}
+              options={{ precision: 2, separator: ',', delimiter: '.', unit: 'R$ ', suffixUnit: '' }}
               value={amount}
               onChangeText={setAmount}
             />
@@ -178,11 +170,7 @@ const GoalDetailScreen = () => {
         </View>
       </Modal>
 
-      <Modal
-        transparent={true}
-        visible={deleteModalVisible}
-        onRequestClose={() => setDeleteModalVisible(false)}
-      >
+      <Modal transparent={true} visible={deleteModalVisible} onRequestClose={() => setDeleteModalVisible(false)}>
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Text style={styles.modalTitle}>Confirmar Exclusão</Text>
@@ -224,12 +212,13 @@ const styles = StyleSheet.create({
   deleteButton: {
     backgroundColor: 'red',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 8,
+    width: 65,
   },
   deleteText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
   },
   contentContainer: {
     padding: 20,

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Modal, TextInput, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Modal, TextInput, ScrollView, FlatList } from 'react-native';
 import { Button, Card, Title, Provider as PaperProvider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
+import { TextInputMask } from 'react-native-masked-text';
 
 const GoalItem = ({ title, total, saved, onPress }) => {
   const percentSaved = ((saved / total) * 100).toFixed(2);
@@ -44,10 +46,6 @@ const Box = () => {
     { goal: 'Viagem', amount: 2000, type: 'Depósito', date: '2023-05-01' },
     { goal: 'Carro novo', amount: 500, type: 'Depósito', date: '2023-04-25' },
     { goal: 'Casa própria', amount: 1000, type: 'Depósito', date: '2023-04-20' }, 
-    { goal: 'Casa própria', amount: 1000, type: 'Depósito', date: '2023-04-20' },
-    { goal: 'Casa própria', amount: 1000, type: 'Depósito', date: '2023-04-20' },
-    { goal: 'Casa própria', amount: 1000, type: 'Depósito', date: '2023-04-20' },
-    { goal: 'Casa própria', amount: 1000, type: 'Depósito', date: '2023-04-20' },
   ]);
 
   const totalSaved = goals.reduce((acc, goal) => acc + goal.saved, 0) + transfers.reduce((acc, transfer) => acc + transfer.amount, 0);
@@ -82,21 +80,23 @@ const Box = () => {
 
         <View style={styles.transfersContainer}>
           <Text style={styles.transfersTitle}>Últimas Transferências</Text>
-          <ScrollView contentContainerStyle={styles.transfersContent}>
-            {transfers.map((transfer, index) => (
-              <View key={index} style={styles.transferRow}>
+          <FlatList
+            data={transfers}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <View style={styles.transferRow}>
                 <View style={styles.transferGoal}>
                   <Ionicons name="bookmark" size={20} color="#4CAF50" />
-                  <Text style={styles.transferGoalText}>{transfer.goal}</Text>
+                  <Text style={styles.transferGoalText}>{item.goal}</Text>
                 </View>
                 <View style={styles.transferDetails}>
-                  <Text style={styles.transferAmount}>{`R$ ${transfer.amount.toLocaleString('pt-BR')}`}</Text>
-                  <Text style={styles.transferType}>{transfer.type}</Text>
-                  <Text style={styles.transferDate}>{transfer.date}</Text>
+                  <Text style={styles.transferAmount}>{`R$ ${item.amount.toLocaleString('pt-BR')}`}</Text>
+                  <Text style={styles.transferType}>{item.type}</Text>
+                  <Text style={styles.transferDate}>{item.date}</Text>
                 </View>
               </View>
-            ))}
-          </ScrollView>
+            )}
+          />
         </View>
 
         <TouchableOpacity style={styles.addButton} onPress={() => setModalVisible(true)}>
@@ -105,7 +105,7 @@ const Box = () => {
 
         <Modal animationType="slide" transparent visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
           <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
+            <View style={styles.modalView}>
               <Text style={styles.modalTitle}>Adicionar Nova Meta</Text>
               <TextInput
                 style={styles.input}
@@ -113,16 +113,22 @@ const Box = () => {
                 value={newGoalTitle}
                 onChangeText={(text) => setNewGoalTitle(text)}
               />
-              <TextInput
+              <TextInputMask
                 style={styles.input}
-                placeholder="Valor Total"
-                keyboardType="numeric"
+                type={'money'}
+                placeholder='R$ 20,00'
+                options={{ precision: 2, separator: ',', delimiter: '.', unit: 'R$ ', suffixUnit: '' }}
                 value={newGoalTotal}
                 onChangeText={(text) => setNewGoalTotal(text)}
               />
-              <Button mode="contained" onPress={addGoal} style={styles.modalAddButton}>
-                Adicionar
-              </Button>
+              <View style={styles.modalButtonsContainer}>
+                <TouchableOpacity style={[styles.modalButton, styles.cancelButton]} onPress={() => setModalVisible(false)}>
+                  <Text style={styles.modalButtonText}>Cancelar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.modalButton, styles.confirmButton]} onPress={addGoal}>
+                  <Text style={styles.modalButtonText}>Adicionar</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </Modal>
@@ -173,151 +179,156 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   scrollViewContent: {
-    flexDirection    : 'row',
+    flexDirection: 'row',
   },
   goalTouchable: {
-  marginRight: 12,
+    marginRight: 12,
   },
   goalCard: {
-  width: 200,
-  backgroundColor: '#1E1E1E',
-  borderRadius: 10,
+    width: 200,
+    backgroundColor: '#1E1E1E',
+    borderRadius: 10,
   },
   title: {
-  fontSize: 16,
-  textAlign: 'center',
-  color: '#FFFFFF',
-  marginBottom: 10,
-  fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#FFFFFF',
+    marginBottom: 10,
+    fontWeight: 'bold',
   },
   text2: {
-  color: '#BBBBBB',
-  fontSize: 12,
+    color: '#BBBBBB',
+    fontSize: 12,
   },
   progressContainer: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  marginTop: 10,
-  borderRadius: 18,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+    borderRadius: 18,
   },
   progressBar: {
-  flex: 1,
-  backgroundColor: '#555555',
-  height: 20,
-  borderRadius: 18,
-  marginRight: 5,
-  position: 'relative',
-  overflow: 'hidden',
+    flex: 1,
+    backgroundColor: '#555555',
+    height: 20,
+    borderRadius: 18,
+    marginRight: 5,
+    position: 'relative',
+    overflow: 'hidden',
   },
   progressValue: {
-  position: 'absolute',
-  right: 5,
-  color: '#FFFFFF',
-  fontWeight: 'bold',
-  fontSize: 12,
+    position: 'absolute',
+    right: 5,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 12,
   },
   amountContainer: {
-  marginTop: 10,
-  flexDirection: 'column',
+    marginTop: 10,
+    flexDirection: 'column',
   },
   savedAmount: {
-  color: '#4CAF50',
-  fontSize: 12,
+    color: '#4CAF50',
+    fontSize: 12,
   },
   transfersContainer: {
-  flex: 12,
-  paddingHorizontal: 10,
+    flex: 12,
+    paddingHorizontal: 10,
   },
   transfersTitle: {
-  fontSize: 18,
-  color: '#FFFFFF',
-  textAlign: 'center',
-  marginBottom: 10,
-  fontWeight: 'bold',
-  },
-  transfersContent: {
-  paddingBottom: 20,
+    fontSize: 18,
+    color: '#FFFFFF',
+    textAlign: 'left',
+    marginVertical: 10,
+    fontWeight: 'bold',
   },
   transferRow: {
-    backgroundColor: '#fff',
-    padding: 15,
-    marginVertical: 5,
-    borderRadius: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 5,
-    elevation: 2,
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#444444',
   },
   transferGoal: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  flex: 3,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   transferGoalText: {
-  color: '#127682',
-  fontSize: 16,
-  fontWeight: 'bold',
-  marginLeft: 10,
+    fontSize: 16,
+    color: '#FFFFFF',
+    marginLeft: 10,
   },
   transferDetails: {
-  flex: 3,
-  flexDirection: 'column',
-  alignItems: 'flex-end',
+    flex: 2,
+    alignItems: 'flex-end',
   },
   transferAmount: {
-  color: '#FFFFFF',
-  fontSize: 16,
-  fontWeight: 'bold',
+    fontSize: 16,
+    color: '#FFFFFF',
   },
   transferType: {
-  color: '#BBBBBB',
-  fontSize: 14,
+    fontSize: 14,
+    color: '#BBBBBB',
   },
   transferDate: {
-  color: '#BBBBBB',
-  fontSize: 12,
+    fontSize: 12,
+    color: '#BBBBBB',
   },
   modalContainer: {
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
-  modalContent: {
-  backgroundColor: '#127682',
-  padding: 20,
-  borderRadius: 10,
-  width: '80%',
-  shadowColor: '#4E4A4A',
-  shadowOpacity: 0.3,
-  shadowOffset: { width: 0, height: 2 },
-  shadowRadius: 4,
-  elevation: 5,
+  modalView: {
+    width: '80%',
+    backgroundColor: '#FFF',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   modalTitle: {
-  fontSize: 20,
-  fontWeight: 'bold',
-  marginBottom: 10,
-  textAlign: 'center',
-  color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
+    marginBottom: 15,
   },
   input: {
-  height: 40,
-  borderColor: '#CCCCCC',
-  borderWidth: 1,
-  borderRadius: 5,
-  paddingHorizontal: 10,
-  marginBottom: 10,
+    width: '100%',
+    backgroundColor: '#FFF',
+    padding: 10,
+    borderRadius: 5,
+    color: 'black',
+    marginBottom: 15,
+    borderWidth:1,
   },
-  modalAddButton: {
-  backgroundColor: 'black',
-  marginTop: 10,
+  modalButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  modalButton: {
+    flex: 1,
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  cancelButton: {
+    backgroundColor: '#ff6347',
+    marginRight: 10,
+  },
+  confirmButton: {
+    backgroundColor: '#127682',
+  },
+  modalButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
   },
 });
 
 export default Box;
-
