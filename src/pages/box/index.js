@@ -16,15 +16,15 @@ const GoalItem = ({ title, total, saved, onPress }) => {
           <Title style={styles.title}>{title}</Title>
           <View style={styles.progressContainer}>
             <View style={styles.progressBar}>
-              <View style={{ width: `${percentSaved}%`, backgroundColor: '#127682', borderRadius: 5, height: '100%' }}>
+              <View style={{ ...styles.progressBarFill, width: `${percentSaved}%` }}>
                 <Text style={styles.progressValue}>{percentSaved}%</Text>
               </View>
             </View>
           </View>
           <View style={styles.amountContainer}>
-            <Text style={styles.text2}>Total: R$ {total.toLocaleString('pt-BR')}</Text>
-            <Text style={styles.text2}>Guardado:</Text>
-            <Text style={styles.savedAmount}>R$ {saved.toLocaleString('pt-BR')}</Text>
+            <Text style={styles.text2}>Meta: R$ {total.toLocaleString('pt-BR')}</Text>
+            <Text style={styles.text2}>Guardado: R$ {saved.toLocaleString('pt-BR')}</Text>
+            
           </View>
         </Card.Content>
       </Card>
@@ -45,14 +45,14 @@ const Box = () => {
   const [transfers, setTransfers] = useState([
     { goal: 'Viagem', amount: 2000, type: 'Depósito', date: '2023-05-01' },
     { goal: 'Carro novo', amount: 500, type: 'Depósito', date: '2023-04-25' },
-    { goal: 'Casa própria', amount: 1000, type: 'Depósito', date: '2023-04-20' }, 
+    { goal: 'Casa própria', amount: 1000, type: 'Depósito', date: '2023-04-20' },
   ]);
 
   const totalSaved = goals.reduce((acc, goal) => acc + goal.saved, 0) + transfers.reduce((acc, transfer) => acc + transfer.amount, 0);
 
   const addGoal = () => {
     if (newGoalTitle && newGoalTotal) {
-      setGoals([...goals, { title: newGoalTitle, total: parseInt(newGoalTotal), saved: 0 }]);
+      setGoals([...goals, { title: newGoalTitle, total: parseInt(newGoalTotal.replace(/[^\d]+/g, '')), saved: 0 }]);
       setModalVisible(false);
       setNewGoalTitle('');
       setNewGoalTotal('');
@@ -84,15 +84,17 @@ const Box = () => {
             data={transfers}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <View style={styles.transferRow}>
-                <View style={styles.transferGoal}>
-                  <Ionicons name="bookmark" size={20} color="#4CAF50" />
-                  <Text style={styles.transferGoalText}>{item.goal}</Text>
-                </View>
-                <View style={styles.transferDetails}>
-                  <Text style={styles.transferAmount}>{`R$ ${item.amount.toLocaleString('pt-BR')}`}</Text>
-                  <Text style={styles.transferType}>{item.type}</Text>
-                  <Text style={styles.transferDate}>{item.date}</Text>
+              <View style={styles.transferCard}>
+                <View style={styles.transferRow}>
+                  <View style={styles.transferGoal}>
+                    <Ionicons name="bookmark" size={20} color="#4CAF50" />
+                    <Text style={styles.transferGoalText}>{item.goal}</Text>
+                  </View>
+                  <View style={styles.transferDetails}>
+                    <Text style={styles.transferAmount}>{`R$ ${item.amount.toLocaleString('pt-BR')}`}</Text>
+                    <Text style={styles.transferType}>{item.type}</Text>
+                    <Text style={styles.transferDate}>{item.date}</Text>
+                  </View>
                 </View>
               </View>
             )}
@@ -140,7 +142,7 @@ const Box = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
+    paddingTop: 60,
     backgroundColor: '#121212',
     paddingHorizontal: 10,
   },
@@ -215,9 +217,14 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
   },
+  progressBarFill: {
+    backgroundColor: '#127682',
+    borderRadius: 5,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   progressValue: {
-    position: 'absolute',
-    right: 5,
     color: '#FFFFFF',
     fontWeight: 'bold',
     fontSize: 12,
@@ -241,12 +248,20 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     fontWeight: 'bold',
   },
+  transferCard: {
+    backgroundColor: '#2E2E2E',
+    borderRadius: 10,
+    marginBottom: 10,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+  },
   transferRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#444444',
   },
   transferGoal: {
     flex: 1,
@@ -265,10 +280,12 @@ const styles = StyleSheet.create({
   transferAmount: {
     fontSize: 16,
     color: '#FFFFFF',
+    fontWeight: 'bold',
   },
   transferType: {
     fontSize: 14,
     color: '#BBBBBB',
+    fontStyle: 'italic',
   },
   transferDate: {
     fontSize: 12,
@@ -305,7 +322,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: 'black',
     marginBottom: 15,
-    borderWidth:1,
+    borderWidth: 1,
+    borderColor: '#DDD',
   },
   modalButtonsContainer: {
     flexDirection: 'row',
