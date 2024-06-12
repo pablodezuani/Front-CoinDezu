@@ -193,7 +193,7 @@ const GoalDetailScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#171615',
+    backgroundColor: '#126782',
     paddingTop: 40,
   },
   header: {
@@ -379,3 +379,4 @@ const styles = StyleSheet.create({
 });
 
 export default GoalDetailScreen;
+

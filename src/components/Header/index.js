@@ -3,7 +3,6 @@ import { View, StyleSheet, Text, StatusBar, TouchableOpacity, Modal, Image } fro
 import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
-
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 64;
 
 export default function Header({ name }) {
@@ -58,11 +57,11 @@ export default function Header({ name }) {
             <Feather name="user" size={27} color="black" />
           )}
         </TouchableOpacity>
-        <Text style={styles.username}>Pablo Dezuani</Text>
+        <Text style={styles.username}>{name}</Text>
       </View>
 
       <Modal
-        animationType='none'
+        animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={closeModal}
@@ -78,7 +77,7 @@ export default function Header({ name }) {
               <Feather name="image" size={20} color="#4a90e2" />
               <Text style={styles.modalOptionText}>Escolher Foto</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.cancelButton} onPress={() => { closeModal(); }}>
+            <TouchableOpacity style={styles.cancelButton} onPress={closeModal}>
               <Text style={styles.cancelButtonText}>Cancelar</Text>
             </TouchableOpacity>
           </View>
@@ -87,74 +86,72 @@ export default function Header({ name }) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor:'#171615',
-      paddingTop: statusBarHeight,
-      flexDirection: 'row',
-      paddingStart: 16,
-      paddingEnd: 16,
-      paddingBottom: 44,
-    },
-    content: {
-      flex: 1,
-      alignItems: 'center',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      color:'pink'
-    },
-    username: {
-      fontSize: 14,
-      color :'#FFF',
-      fontWeight: 'bold'
-    },
-    buttonUser: {
-      width: 44,
-      height: 44,
-      backgroundColor: 'rgba(255,255,255,0.5)',
-      justifyContent: "center",
-      alignItems: 'center',
-      borderRadius: 44 / 2,
-    },
-    modalContainer: {
-      flex: 1,
-      backgroundColor: 'transparent',
-      alignItems:'flex-start',
-      justifyContent:'flex-end',
-      marginLeft:6
-    },
-    modalContent: {
-      backgroundColor: '#171615',
-      width:400,
-      padding: 20,
-      borderTopLeftRadius:10,
-      borderTopRightRadius:10,
-      alignItems: 'center',
-    
-    },
-    modalTitle: {
-      fontSize: 18,
-      marginBottom: 20,
-      fontWeight: 'bold',
-      color:'white'
-      
-    },
-    modalOption: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 15,
-      
-    },
-    modalOptionText: {
-      marginLeft: 10,
-      fontSize: 16,
-      color: '#4a90e2',
-    },
-    cancelButton: {
-      marginTop: 10,
-    },
-    cancelButtonText: {
-      fontSize: 16,
-      color: 'red',
-    },
-  });
+  container: {
+    backgroundColor: '#171615',
+    paddingTop: statusBarHeight,
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    paddingBottom: 44,
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  username: {
+    fontSize: 14,
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
+  buttonUser: {
+    width: 44,
+    height: 44,
+    backgroundColor: 'rgba(255,255,255,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 22,
+  },
+  userImage: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    backgroundColor: '#171615',
+    padding: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    alignItems: 'center',
+    marginHorizontal: 16,
+  },
+  modalTitle: {
+    fontSize: 18,
+    marginBottom: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  modalOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  modalOptionText: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#4a90e2',
+  },
+  cancelButton: {
+    marginTop: 10,
+  },
+  cancelButtonText: {
+    fontSize: 16,
+    color: 'red',
+  },
+});
