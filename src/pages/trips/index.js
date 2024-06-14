@@ -8,7 +8,7 @@ import Slider from '@react-native-community/slider';
 
 const Trips = () => {
   const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 54;
-  const KEY_GPT = 'sk-proj-E7tlfYssXVYfZZ9V1AI8T3BlbkFJirzrUDDZcFBvU1CIytwU'; // Insira sua chave GPT aqui
+  const KEY_GPT = 'sk-proj-E7tlfYssXVYfZZ9V1AI8T3Blb3f232322f3332323f3f3ff3232f23fkFJirzrUDDZcFBvU1CIytwU'; // Insira sua chave GPT aqui
 
   const [city, setCity] = useState("");
   const [days, setDays] = useState(3);
@@ -100,14 +100,20 @@ const Trips = () => {
           style={styles.input}
           value={city}
           onChangeText={(text) => setCity(text)}
+          placeholderTextColor="#ccc"
         />
 
-        <Text style={styles.label}>Tempo de estadia: <Text style={styles.days}> {days.toFixed(0)} </Text> dias</Text>
+        <View style={styles.daysContainer}>
+          <Text style={styles.label}>Tempo de estadia:</Text>
+          <Text style={styles.days}>{days.toFixed(0)} dias</Text>
+        </View>
         <Slider
+          style={styles.slider}
           minimumValue={1}
           maximumValue={7}
-          minimumTrackTintColor="#009688"
-          maximumTrackTintColor="#000000"
+          minimumTrackTintColor="#4CAF50"
+          maximumTrackTintColor="#d3d3d3"
+          thumbTintColor="#4CAF50"
           value={days}
           onValueChange={(value) => setDays(value)}
         />
@@ -118,20 +124,20 @@ const Trips = () => {
         <MaterialIcons name="travel-explore" size={24} color="#FFF" />
       </Pressable>
 
-      <ScrollView contentContainerStyle={{ paddingBottom: 24, marginTop: 4 }} style={styles.containerScroll} showsVerticalScrollIndicator={false} >
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
         {loading && (
           <View style={styles.content}>
-            <Text style={styles.title}>Carregando roteiro...</Text>
-            <ActivityIndicator color="#000" size="large" />
+            <ActivityIndicator color="#4CAF50" size="large" />
+            <Text style={styles.loadingText}>Gerando roteiro...</Text>
           </View>
         )}
 
-        {travel && (
+        {travel !== "" && (
           <View style={styles.content}>
-            <Text style={styles.title}>Roteiro da viagem 👇</Text>
+            <Text style={styles.title}>Roteiro da viagem</Text>
             <Text style={styles.travelText}>{travel}</Text>
-            <Pressable onPress={handleAddToGoals}>
-              <Text style={styles.addToGoals}>Adicionar à Meta</Text>
+            <Pressable onPress={handleAddToGoals} style={styles.addToGoalsButton}>
+              <Text style={styles.addToGoalsText}>Adicionar à Meta</Text>
             </Pressable>
           </View>
         )}
@@ -143,104 +149,127 @@ const Trips = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#171615',
+    backgroundColor: '#126782',
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 20 : 20,
   },
   heading: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 54,
-    color: '#FFFF',
+    color: '#333',
+    marginBottom: 20,
   },
   form: {
-    backgroundColor: '#FFF',
     width: '90%',
-    borderRadius: 12,
+    backgroundColor: '#F5F5F5',
     padding: 20,
-    marginTop: 16,
-    marginBottom: 8,
-    elevation: 3,
+    borderRadius: 12,
+    marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+    elevation: 3,
   },
   label: {
+    fontSize: 16,
     fontWeight: 'bold',
-    fontSize: 18,
-    marginBottom: 8,
-    color: '#333',
+    color: '#555',
   },
   input: {
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: '#94a3b8',
-    padding: 12,
-    fontSize: 16,
+    marginTop: 8,
     marginBottom: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    fontSize: 16,
     color: '#333',
+  },
+  daysContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 12,
   },
   days: {
-    backgroundColor: '#F1F1F1',
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#4CAF50',
+  },
+  slider: {
+    marginBottom: 16,
   },
   button: {
-    backgroundColor: '#126782',
-    width: '90%',
-    borderRadius: 8,
     flexDirection: 'row',
-    padding: 14,
-    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
-    marginTop: 16,
+    justifyContent: 'center',
+    backgroundColor: '#4CAF50',
+    width: '90%',
+    paddingVertical: 14,
+    borderRadius: 8,
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 3,
   },
   buttonText: {
     fontSize: 18,
-    color: '#FFF',
     fontWeight: 'bold',
+    color: '#FFF',
+    marginRight: 8,
+  },
+  scrollContainer: {
+    alignItems: 'center',
+    paddingBottom: 24,
   },
   content: {
-    backgroundColor: '#FFF',
-    padding: 16,
-    width: '100%',
-    marginTop: 16,
+    width: '90%',
+    backgroundColor: '#FFFFFF',
+    padding: 20,
+    marginBottom: 20,
     borderRadius: 12,
-    elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+    elevation: 3,
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 14,
     color: '#333',
+    marginBottom: 12,
+    textAlign: 'center',
   },
   travelText: {
+    fontSize: 16,
     lineHeight: 24,
-    color: '#333',
+    color: '#555',
+    textAlign: 'justify',
   },
-  containerScroll: {
-    width: '90%',
-    marginTop: 8,
+  addToGoalsButton: {
+    marginTop: 16,
+    backgroundColor: '#4CAF50',
+    borderRadius: 8,
+    paddingVertical: 12,
+    width: '100%',
   },
-  addToGoals: {
-    marginTop: 10,
-    textAlign: 'center',
+  addToGoalsText: {
+    fontSize: 16,
+    fontWeight: 'bold',
     color: '#FFF',
-    fontSize: 18,
-    backgroundColor: '#126782',
-    width:'100%',
-    borderRadius:8,
-    height:36,
-    padding:5,
-
+    textAlign: 'center',
   },
-})
+});
 
 export default Trips;

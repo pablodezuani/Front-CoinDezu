@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   button: {
-    backgroundColor: '#126782',
+    backgroundColor: '#1E90FF',
     padding: 15,
     borderRadius: 5,
     flex: 1,
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff6347',
   },
   confirmButton: {
-    backgroundColor: '#126782',
+    backgroundColor: '#32CD32',
   },
   modalButtonText: {
     color: '#fff',

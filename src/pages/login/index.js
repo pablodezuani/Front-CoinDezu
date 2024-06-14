@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import React from 'react';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
 
 export default function Login() {
   const navigation = useNavigation();
@@ -17,7 +17,7 @@ export default function Login() {
         <Text style={styles.title}>Senha</Text>
         <TextInput placeholder='Digite sua senha' style={styles.input} secureTextEntry />
         <TouchableOpacity style={styles.reset} onPress={() => navigation.navigate('ForgotPasswordScreen')}>
-          <Text>Esqueceu a senha?</Text>
+          <Text style={styles.textreset}>Esqueceu a senha?</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('home')}>
           <Text style={styles.buttonText}>Acessar</Text>
@@ -34,6 +34,9 @@ export default function Login() {
           <View style={styles.iconWrapper}>
             <AntDesign name="apple1" size={40} color="black" />
           </View>
+          <View style={styles.iconWrapper}>
+            <FontAwesome name="facebook" size={40} color="#3b5998" />
+          </View>
         </View>
         <View style={styles.registerContainer}>
           <Text style={styles.registerText}>
@@ -49,7 +52,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#171615',
+    backgroundColor: '#121212',
   },
   containerHeader: {
     marginTop: '14%',
@@ -61,8 +64,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
   },
+textreset:{
+  color:'#FFFFFF'
+},
+
   containerForm: {
-    backgroundColor: '#126782',
+    backgroundColor: '#778899',
     flex: 1,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -70,10 +77,12 @@ const styles = StyleSheet.create({
   },
   reset: {
     alignSelf: 'flex-end',
+  
   },
   title: {
     fontSize: 20,
     marginTop: 28,
+    color:'#FFFFFF'
   },
   input: {
     borderBottomWidth: 1,
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#171615',
+    backgroundColor: '#1E90FF',
     width: '100%',
     borderRadius: 18,
     paddingVertical: 8,
@@ -91,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: '#FFF',
+    color: '#FFFFFF',
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -103,12 +112,12 @@ const styles = StyleSheet.create({
   },
   dividerLine: {
     fontSize: 16,
-    color: '#FFF',
+    color: '#EFEEEE',
   },
   dividerText: {
     fontSize: 16,
     marginHorizontal: 10,
-    color: '#FFF',
+    color: '#EFEEEE',
   },
   iconContainer: {
     flexDirection: 'row',
@@ -117,7 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconWrapper: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#EFEEEE',
     padding: 10,
     borderRadius: 10,
     marginHorizontal: 10,
@@ -127,7 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   registerText: {
-    color: '#FFF',
+    color: '#EFEEEE',
     fontSize: 16,
   },
   registerLink: {

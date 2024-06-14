@@ -89,7 +89,7 @@ export default function Header({ name }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#171615',
+    backgroundColor: '#121212',
     paddingTop: statusBarHeight,
     flexDirection: 'row',
     paddingHorizontal: 16,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalContent: {
-    backgroundColor: '#171615',
+    backgroundColor: '#121212',
     padding: 20,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,

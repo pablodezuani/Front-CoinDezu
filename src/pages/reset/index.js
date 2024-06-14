@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#171615',
+    backgroundColor: '#121212',
   },
   header: {
     fontWeight: 'bold',

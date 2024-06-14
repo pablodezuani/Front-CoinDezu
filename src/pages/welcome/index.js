@@ -20,9 +20,9 @@ delay={600}
 animation="fadeInUp"
 style={styles.containerForm}>
 
-  <Text style={styles.title}>Monitore suas metas</Text>
+  <Text style={styles.title}>Seja Bem vindo</Text>
 
-<Text styles={styles.text}>Tenha o controle de todas as suas Metas</Text>
+<Text styles={styles.text}>Tenha o controle do seu Dinheiro e realize seus sonhos </Text>
 
 
 <TouchableOpacity 
@@ -43,18 +43,18 @@ style={styles.button}>
 const styles = StyleSheet.create({
   container:{
 flex:1,
-backgroundColor:'#171615'
+backgroundColor:'#121212'
   },
   containerLogo:{
     flex:2,
-    backgroundColor:'#171615',
+    backgroundColor:'#121212',
     justifyContent:'center',
     alignItems:'center'
 
   },
   containerForm:{
     flex:1,
-    backgroundColor:'#126782',
+    backgroundColor:'#778899',
 borderTopLeftRadius:25,
 borderTopRightRadius:25,
 paddingStart:'5%',
@@ -65,17 +65,16 @@ paddingEnd:'5%'
     fontWeight:'bold',
     marginTop:28,
     marginBottom:12,
-    color:'#FFF'
+    color:'#FFFFFF'
   },
   text:{
-color:'#FFF',
-
+color:'#B3B3B3',
 
   },
   button:{
     position:'absolute',
     borderRadius:50,
-    backgroundColor:'black',
+    backgroundColor:'#1E90FF',
     paddingVertical:8,
     width:'60%',
     alignSelf:'center',
@@ -85,7 +84,7 @@ color:'#FFF',
   },
   buttonText:{
     fontSize:18,
-    color:'#FFF',
+    color:'#EFEEEE',
     fontWeight:'bold'
   }
 })
