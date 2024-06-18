@@ -56,7 +56,7 @@ export default function Actions() {
         <View style={styles.ButtonArea}>
           <AntDesign name="shoppingcart" size={24} color="#8C2A96" />
         </View>
-        <Text style={styles.buttonlabel}>Despesas</Text>
+        <Text style={styles.buttonlabel}>Despesas de</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisiblePix(true)}>
