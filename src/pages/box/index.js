@@ -23,7 +23,7 @@ const GoalItem = ({ title, total, saved, onPress }) => {
           </View>
           <View style={styles.amountContainer}>
             <Text style={styles.text2}>Meta: R$ {total.toLocaleString('pt-BR')}</Text>
-            <Text style={styles.text2}>Guardado: R$ {saved.toLocaleString('pt-BR')}</Text>
+            <Text style={styles.text2}>Guardad0: R$ {saved.toLocaleString('pt-BR')}</Text>
             
           </View>
         </Card.Content>
