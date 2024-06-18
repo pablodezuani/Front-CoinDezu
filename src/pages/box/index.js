@@ -143,12 +143,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 60,
-    backgroundColor: '#126782',
+    backgroundColor: '#004853',
     paddingHorizontal: 10,
   },
   mainTitle: {
     fontSize: 28,
-    color: '#FFFFFF',
+    color: '#ffe8d3',
     textAlign: 'center',
     fontWeight: 'bold',
     marginBottom: 10,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   totalSaved: {
     fontSize: 18,
-    color: '#127682',
+    color: '#eefffd',
     textAlign: 'center',
     marginBottom: 20,
   },
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: '#127682',
+    backgroundColor: '#00b9bd',
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -188,18 +188,18 @@ const styles = StyleSheet.create({
   },
   goalCard: {
     width: 200,
-    backgroundColor: '#1E1E1E',
+    backgroundColor: '#007e80',
     borderRadius: 10,
   },
   title: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#FFFFFF',
+    color: '#eefffd',
     marginBottom: 10,
     fontWeight: 'bold',
   },
   text2: {
-    color: '#BBBBBB',
+    color: '#eefffd',
     fontSize: 12,
   },
   progressContainer: {
@@ -218,14 +218,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   progressBarFill: {
-    backgroundColor: '#127682',
+    backgroundColor: '#fb6900',
     borderRadius: 5,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   progressValue: {
-    color: '#FFFFFF',
+    color: '#ffe8d3',
     fontWeight: 'bold',
     fontSize: 12,
   },
@@ -243,13 +243,13 @@ const styles = StyleSheet.create({
   },
   transfersTitle: {
     fontSize: 18,
-    color: '#FFFFFF',
+    color: '#ffe8d3',
     textAlign: 'left',
     marginVertical: 10,
     fontWeight: 'bold',
   },
   transferCard: {
-    backgroundColor: '#2E2E2E',
+    backgroundColor: '#007e80',
     borderRadius: 10,
     marginBottom: 10,
     padding: 10,
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   },
   transferAmount: {
     fontSize: 16,
-    color: '#FFFFFF',
+    color: '#ffe8d3',
     fontWeight: 'bold',
   },
   transferType: {
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
     width: '80%',
@@ -337,14 +337,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: '#ff6347',
+    backgroundColor: '#fb6900',
     marginRight: 10,
   },
   confirmButton: {
-    backgroundColor: '#127682',
+    backgroundColor: '#00b9bd',
   },
   modalButtonText: {
-    color: '#FFFFFF',
+    color: '#ffe8d3',
     fontWeight: 'bold',
   },
 });

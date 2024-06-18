@@ -100,7 +100,7 @@ const Trips = () => {
           style={styles.input}
           value={city}
           onChangeText={(text) => setCity(text)}
-          placeholderTextColor="#ccc"
+          placeholderTextColor="black"
         />
 
         <View style={styles.daysContainer}>
@@ -111,9 +111,9 @@ const Trips = () => {
           style={styles.slider}
           minimumValue={1}
           maximumValue={7}
-          minimumTrackTintColor="#4CAF50"
-          maximumTrackTintColor="#d3d3d3"
-          thumbTintColor="#4CAF50"
+          minimumTrackTintColor="#ff7932"
+          maximumTrackTintColor="#f63700"
+          thumbTintColor="#f63700"
           value={days}
           onValueChange={(value) => setDays(value)}
         />
@@ -149,7 +149,7 @@ const Trips = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#126782',
+    backgroundColor: '#004853',
     alignItems: 'center',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 20 : 20,
   },
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   form: {
     width: '90%',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#00b9bd',
     padding: 20,
     borderRadius: 12,
     marginBottom: 20,
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#555',
+    color: '#004853',
   },
   input: {
     marginTop: 8,
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   days: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#4CAF50',
+    color: '#004853',
   },
   slider: {
     marginBottom: 16,
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#f63700',
     width: '90%',
     paddingVertical: 14,
     borderRadius: 8,

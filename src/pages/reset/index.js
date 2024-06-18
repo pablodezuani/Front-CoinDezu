@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#121212',
+    backgroundColor: '#00b9bd',
   },
   header: {
     fontWeight: 'bold',
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 25,
-    backgroundColor: '#126782',
+    backgroundColor: '#f63700',
     paddingVertical: 12,
     paddingHorizontal: 32,
     alignItems: 'center',

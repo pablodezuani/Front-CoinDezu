@@ -1,90 +1,82 @@
-import { View, Text , StyleSheet,Image,TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import * as Animatable from 'react-native-animatable'
+import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
-export default function welcome() {
-const navigation =useNavigation();
 
- return (
-<View style={styles.container}>
-<View style={styles.containerLogo}>
-  <Animatable.Image
-  animation="flipInY"
-  source ={require('../../assets/splash.png')}
-  style={{width:'100%'}}
-  resizeMode="contain"
-  />
-</View>
-<Animatable.View
-delay={600}
-animation="fadeInUp"
-style={styles.containerForm}>
+export default function Welcome() {
+  const navigation = useNavigation();
 
-  <Text style={styles.title}>Seja Bem vindo</Text>
-
-<Text styles={styles.text}>Tenha o controle do seu Dinheiro e realize seus sonhos </Text>
-
-
-<TouchableOpacity 
-onPress={() =>navigation.navigate('login')}
-style={styles.button}>
-
-<Text style={styles.buttonText}>Acessar</Text>
-
-</TouchableOpacity>
-
-</Animatable.View>
-</View>
-
-
+  return (
+    <View style={styles.container}>
+      <View style={styles.containerLogo}>
+        <Animatable.Image
+          animation="flipInY"
+          source={require('../../assets/splash.png')}
+          style={{ width: '100%' }}
+          resizeMode="contain"
+        />
+      </View>
+      <Animatable.View
+        delay={600}
+        animation="fadeInUp"
+        style={styles.containerForm}
+      >
+        <Text style={styles.title}>Seja Bem vindo</Text>
+        <Text style={styles.text}>Tenha o controle do seu Dinheiro e realize seus sonhos</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('login')}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Acessar</Text>
+        </TouchableOpacity>
+      </Animatable.View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{
-flex:1,
-backgroundColor:'#121212'
+  container: {
+    flex: 1,
+    backgroundColor: '#004853', // Cor de fundo clara
   },
-  containerLogo:{
-    flex:2,
-    backgroundColor:'#121212',
-    justifyContent:'center',
-    alignItems:'center'
-
+  containerLogo: {
+    flex: 2,
+    backgroundColor: '#004853', // Cor de fundo clara
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  containerForm:{
-    flex:1,
-    backgroundColor:'#778899',
-borderTopLeftRadius:25,
-borderTopRightRadius:25,
-paddingStart:'5%',
-paddingEnd:'5%'
+  containerForm: {
+    flex: 1,
+    backgroundColor: '#007e80',
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    paddingStart: '5%',
+    paddingEnd: '5%',
   },
-  title:{
-    fontSize:24,
-    fontWeight:'bold',
-    marginTop:28,
-    marginBottom:12,
-    color:'#FFFFFF'
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 28,
+    marginBottom: 12,
+    color: '#FFF', // Texto escuro para contraste
   },
-  text:{
-color:'#B3B3B3',
-
+  text: {
+    color: '#FFF', // Texto escuro para contraste
   },
-  button:{
-    position:'absolute',
-    borderRadius:50,
-    backgroundColor:'#1E90FF',
-    paddingVertical:8,
-    width:'60%',
-    alignSelf:'center',
-    bottom:'15%',  
-    alignItems:'center',
-    justifyContent:'center'
+  button: {
+    position: 'absolute',
+    borderRadius: 50,
+    backgroundColor: '#f63700',
+    paddingVertical: 8,
+    width: '60%',
+    alignSelf: 'center',
+    bottom: '15%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  buttonText:{
-    fontSize:18,
-    color:'#EFEEEE',
-    fontWeight:'bold'
-  }
-})
+  buttonText: {
+    fontSize: 18,
+    color: '#EFEEEE',
+    fontWeight: 'bold',
+  },
+});

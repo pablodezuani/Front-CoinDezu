@@ -6,6 +6,7 @@ import ForgotPasswordScreen from "../pages/reset";
 import Create from "../pages/create";
 import box from "../pages/box";
 import Trips from "../pages/trips";
+import expenses from"../pages/expenses";
 import GoalDetailScreen from "../pages/GoalDetailScreen";
 const Stack = createNativeStackNavigator();
 export default function Routes(){
@@ -63,9 +64,13 @@ return(
     options={{headerShown: false}}
     />
 
+<Stack.Screen
+    name="expenses"
+    component={expenses}
+    options={{headerShown: false}}
+    />
+
 </Stack.Navigator>
 
 )
-
-box
 }

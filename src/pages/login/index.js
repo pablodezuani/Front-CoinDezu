@@ -52,7 +52,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: '#004853',
   },
   containerHeader: {
     marginTop: '14%',
@@ -69,7 +69,7 @@ textreset:{
 },
 
   containerForm: {
-    backgroundColor: '#778899',
+    backgroundColor: '#007e80',
     flex: 1,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -91,7 +91,7 @@ textreset:{
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#1E90FF',
+    backgroundColor: '#f63700',
     width: '100%',
     borderRadius: 18,
     paddingVertical: 8,

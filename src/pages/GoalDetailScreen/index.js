@@ -4,7 +4,6 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import { TextInputMask } from 'react-native-masked-text';
 import { Ionicons } from '@expo/vector-icons';
-import LinearGradient from 'react-native-linear-gradient';
 
 const GoalDetailScreen = () => {
   const [goalValue, setGoalValue] = useState(3500);
@@ -193,7 +192,7 @@ const GoalDetailScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#126782',
+    backgroundColor: '#004853',
     paddingTop: 40,
   },
   header: {
@@ -210,7 +209,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   deleteButton: {
-    backgroundColor: 'red',
+    backgroundColor: '#f63700',
     padding: 10,
     borderRadius: 8,
     width: 65,
@@ -256,7 +255,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   button: {
-    backgroundColor: '#1E90FF',
+    backgroundColor: '#00b9bd',
     padding: 15,
     borderRadius: 5,
     flex: 1,
@@ -335,7 +334,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#126782',
+    color: '#004853',
   },
   modalMessage: {
     fontSize: 16,
@@ -366,10 +365,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: '#ff6347',
+    backgroundColor: '#fb6900',
   },
   confirmButton: {
-    backgroundColor: '#32CD32',
+    backgroundColor: '#00b9bd',
   },
   modalButtonText: {
     color: '#fff',

@@ -56,7 +56,7 @@ export default function Actions() {
         <View style={styles.ButtonArea}>
           <AntDesign name="shoppingcart" size={24} color="#8C2A96" />
         </View>
-        <Text style={styles.buttonlabel}>Compras</Text>
+        <Text style={styles.buttonlabel}>Despesas</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisiblePix(true)}>
@@ -141,24 +141,7 @@ export default function Actions() {
         </TouchableWithoutFeedback>
       </Modal>
 
-      {/* Modal para Compras */}
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisibleCompras}
-        onRequestClose={() => setModalVisibleCompras(false)}
-      >
-        <TouchableWithoutFeedback>
-          <View style={styles.modalBackground}>
-            <View style={styles.modalContent}>
-              <Text>Conteúdo do modal para Compras</Text>
-              <TouchableOpacity onPress={() => setModalVisibleCompras(false)} style={styles.closeIcon}>
-                <Feather name="x" size={24} color="black" />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+    
 
       {/* Modal para Pix */}
       <Modal
@@ -209,14 +192,14 @@ const styles = StyleSheet.create({
     marginTop: 18,
     paddingEnd: 14,
     paddingStart: 14,
-    backgroundColor: '#126782'
+    backgroundColor: '#007e80'
   },
   actionButton: {
     alignItems: 'center',
     marginRight: 32,
   },
   ButtonArea: {
-    backgroundColor: '#C1F4F8',
+    backgroundColor: '#ffe8d3',
     height: 60,
     width: 60,
     borderRadius: 30,
@@ -235,7 +218,7 @@ const styles = StyleSheet.create({
     padding: 25,
   },
   modalContent: {
-    backgroundColor: '#126782',
+    backgroundColor: '#007e80',
     padding: 20,
     borderRadius: 18,
     elevation: 5,
@@ -268,7 +251,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   Botao: {
-    backgroundColor: 'black',
+    backgroundColor: '#f63700',
     height: 40,
     width: 315,
     justifyContent: 'center',

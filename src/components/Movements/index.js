@@ -37,7 +37,7 @@ const styles = StyleSheet.create(
 flex:1,
 marginBottom:24,
 borderBottomWidth:0.5,
-backgroundColor:'#126782'
+backgroundColor:'#007e80'
 
 
         },
@@ -47,19 +47,19 @@ flexDirection:'row',
 justifyContent:'space-between',
 marginBottom:8,
 marginTop:2,
-backgroundColor:'#126782'
 
         },
 
         date:{
 
-            color:'#FFF',
+            color:'#ffe8d3',
             fontWeight:'bold',
+            
         },
         label:{
             fontSize:16,
             fontWeight:'bold',
-            color:'#FFF'
+            color:'#ffe8d3'
         
         },
 
@@ -71,7 +71,7 @@ backgroundColor:'#126782'
         },
 
         saida:{
-
+            backgroundColor:'#007e80',
             fontSize:16,
             color:'#e74c3c',
             fontWeight:'bold'  
