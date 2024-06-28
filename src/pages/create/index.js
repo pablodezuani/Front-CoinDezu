@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const CadastroScreen = () => {
   const [nome, setNome] = useState('');
@@ -11,13 +13,22 @@ const CadastroScreen = () => {
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
-  const handleCadastro = () => {
-    // Aqui você pode implementar a lógica para realizar o cadastro do usuário
-    console.log('Nome:', nome);
-    console.log('Data de Nascimento:', dataNascimento);
-    console.log('Email:', email);
-    console.log('Senha:', senha);
-    console.log('Confirmar Senha:', confirmarSenha);
+  const { signUp, loadingAuth } = useContext(AuthContext);
+  const navigation = useNavigation();
+
+  const handleCadastro = async () => {
+    if (senha !== confirmarSenha) {
+      Alert.alert('Erro', 'As senhas não coincidem!');
+      return;
+    }
+
+    try {
+      await signUp({ name: nome, email, password: senha });
+      Alert.alert('Sucesso', 'Cadastro realizado com sucesso!');
+      navigation.navigate('login'); // Navega para a tela de login após o cadastro
+    } catch (error) {
+      Alert.alert('Erro', 'Erro ao realizar cadastro: ' + error.message);
+    }
   };
 
   const formatarData = (input) => {
@@ -83,10 +94,9 @@ const CadastroScreen = () => {
           secureTextEntry={true}
         />
 
-        <TouchableOpacity style={styles.button} onPress={handleCadastro}>
-          <Text style={styles.buttonText}>Cadastrar</Text>
+        <TouchableOpacity style={styles.button} onPress={handleCadastro} disabled={loadingAuth}>
+          <Text style={styles.buttonText}>{loadingAuth ? 'Carregando...' : 'Cadastrar'}</Text>
         </TouchableOpacity>
-
       </Animatable.View>
     </View>
   );
@@ -118,14 +128,14 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 15,
     marginTop: 28,
-    color: 'white'
+    color: 'white',
   },
   input: {
     borderBottomWidth: 1,
     height: 40,
     marginBottom: 12,
     fontSize: 14,
-    color: 'white'
+    color: 'white',
   },
   passwordInputContainer: {
     flexDirection: 'row',
@@ -137,7 +147,7 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 12,
     fontSize: 14,
-    color: 'white'
+    color: 'white',
   },
   button: {
     backgroundColor: '#f63700',
@@ -153,7 +163,6 @@ const styles = StyleSheet.create({
     color: '#FFFF',
     fontSize: 16,
     fontWeight: 'bold',
-
   },
   buttonRegister: {
     marginTop: 38,

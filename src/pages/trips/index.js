@@ -8,7 +8,7 @@ import Slider from '@react-native-community/slider';
 
 const Trips = () => {
   const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 54;
-  const KEY_GPT = 'sk-proj-E7tlfYssXVYfZZ9V1AI8T3Blb3f232322f3332323f3f3ff3232f23fkFJirzrUDDZcFBvU1CIytwU'; // Insira sua chave GPT aqui
+  const KEY_GPT = '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'; // Insira sua chave GPT aqui
 
   const [city, setCity] = useState("");
   const [days, setDays] = useState(3);

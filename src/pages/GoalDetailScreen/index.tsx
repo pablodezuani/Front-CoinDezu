@@ -153,6 +153,7 @@ const GoalDetailScreen = () => {
             <TextInputMask
               style={styles.input}
               type={'money'}
+              placeholder='R$ 20,00'
               options={{ precision: 2, separator: ',', delimiter: '.', unit: 'R$ ', suffixUnit: '' }}
               value={amount}
               onChangeText={setAmount}
@@ -212,18 +213,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#f63700',
     padding: 10,
     borderRadius: 8,
-    width: 65,
+    width: 80,
   },
   deleteText: {
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 14,
+    textAlign:'center'
   },
   contentContainer: {
+    flex: 1,
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
   },
   goalTotal: {
     fontSize: 20,
@@ -378,4 +380,3 @@ const styles = StyleSheet.create({
 });
 
 export default GoalDetailScreen;
-

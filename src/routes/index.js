@@ -1,76 +1,31 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import login from "../pages/login";
-import welcome from "../pages/welcome";
-import home from "../pages/home";
-import ForgotPasswordScreen from "../pages/reset";
-import Create from "../pages/create";
-import box from "../pages/box";
-import Trips from "../pages/trips";
-import expenses from"../pages/expenses";
-import GoalDetailScreen from "../pages/GoalDetailScreen";
-const Stack = createNativeStackNavigator();
-export default function Routes(){
+import React from "react";
+import { View, ActivityIndicator } from 'react-native';
+import AppRoutes from "./app.routes";
+import AuthRoutes from "./auth.routes";
+import { useContext } from 'react';
+import {AuthContext} from '../contexts/AuthContext'
+
+function  Routes(){
+const {isAuthenticated,loading} = useContext(AuthContext);
+
+
+if(loading)
+return(
+    <View style={{ flex:1,
+    backgroundColor:'black',
+    justifyContent:'center',
+    alignItems:'center'
+    }}>
+        <ActivityIndicator size={60} color="red"/>
+    </View>
+)
+
 
 return(
-
-<Stack.Navigator>
-    <Stack.Screen
-    name="welcome"
-    component={welcome}
-    options={{headerShown: false}}
-    />
-
-<Stack.Screen
-    name="login"
-    component={login}
-    options={{headerShown: false}}
-    />
-
-<Stack.Screen
-    name="home"
-    component={home}
-    options={{headerShown: false}}
-    />
-
-
-<Stack.Screen
-    name="ForgotPasswordScreen"
-    component={ForgotPasswordScreen}
-    options={{headerShown: false}}
-    />
-
-<Stack.Screen
-    name="Create"
-    component={Create}
-    options={{headerShown: false}}
-    />
-
-<Stack.Screen
-    name="box"
-    component={box}
-    options={{headerShown: false}}
-    />
-
-    
-<Stack.Screen
-    name="Trips"
-    component={Trips}
-    options={{headerShown: false}}
-    />
-    
-    <Stack.Screen
-    name="GoalDetailScreen"
-    component={GoalDetailScreen}
-    options={{headerShown: false}}
-    />
-
-<Stack.Screen
-    name="expenses"
-    component={expenses}
-    options={{headerShown: false}}
-    />
-
-</Stack.Navigator>
+isAuthenticated ? <AppRoutes/> : <AuthRoutes/>
 
 )
+
 }
+
+export default Routes;

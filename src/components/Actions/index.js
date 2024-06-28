@@ -52,11 +52,11 @@ export default function Actions() {
         <Text style={styles.buttonlabel}>Viagem</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisibleCompras(true)}>
+      <TouchableOpacity style={styles.actionButton} onPress={() => navigation.navigate('expenses')}>
         <View style={styles.ButtonArea}>
           <AntDesign name="shoppingcart" size={24} color="#8C2A96" />
         </View>
-        <Text style={styles.buttonlabel}>Despesas de</Text>
+        <Text style={styles.buttonlabel}>Despesas</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisiblePix(true)}>

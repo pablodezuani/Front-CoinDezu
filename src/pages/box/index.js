@@ -119,6 +119,7 @@ const Box = () => {
                 style={styles.input}
                 type={'money'}
                 placeholder='R$ 20,00'
+            
                 options={{ precision: 2, separator: ',', delimiter: '.', unit: 'R$ ', suffixUnit: '' }}
                 value={newGoalTotal}
                 onChangeText={(text) => setNewGoalTotal(text)}
@@ -320,10 +321,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     padding: 10,
     borderRadius: 5,
-    color: 'black',
+    color: '#121212',
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: '#DDD',
+    borderColor: '#121212',
   },
   modalButtonsContainer: {
     flexDirection: 'row',

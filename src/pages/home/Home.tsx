@@ -10,7 +10,7 @@ import Header from '../../components/Header';
 const list =[
   {
     id:1,
-    label:'boleto conta luz',
+    label:'boleto conta Cartão',
     value :'303,90',
     date :'17/20/2054',
     type: 0 // despesas

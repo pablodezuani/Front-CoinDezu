@@ -49,7 +49,7 @@ export default function Balance({saldo,gastos}) {
 
 const styles = StyleSheet.create({
 container:{
-    backgroundColor:'#bcffff',
+    backgroundColor:'#006170',
     flexDirection:'row',
     justifyContent:'space-between',
     paddingStart:18,
@@ -59,7 +59,7 @@ container:{
     margin:14,
     borderRadius:8,
     paddingTop:22,
-    paddingBottom:30,
+    paddingBottom:40,
     zIndex:99,
 },
 itemTitle:{
