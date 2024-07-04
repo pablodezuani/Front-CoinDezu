@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons-react-native": "^2.3.2",
+    "@clerk/clerk-expo": "^1.2.3",
     "@expo/vector-icons": "^14.0.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -23,6 +24,7 @@
     "axios": "^1.7.2",
     "expo": "^51.0.8",
     "expo-image-picker": "~15.0.5",
+    "expo-secure-store": "^13.0.2",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-datepicker": "^6.6.0",

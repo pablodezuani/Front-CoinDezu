@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   modalContent: {
-    backgroundColor: '#121212',
+    backgroundColor: 'white',
     padding: 20,
     height: 180,
     width: 200,
@@ -157,20 +157,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 20,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#121212',
   },
   modalOption: {
     flexDirection: 'row',
     alignItems: 'center',
+    fontWeight:'bold',
     marginBottom: 15,
   },
   modalOptionText: {
     marginLeft: 10,
     fontSize: 12,
+       fontWeight:'bold',
     color: '#4a90e2',
   },
   cancelButton: {
     marginTop: 10,
+    fontWeight:'bold',
   },
   cancelButtonText: {
     fontSize: 16,

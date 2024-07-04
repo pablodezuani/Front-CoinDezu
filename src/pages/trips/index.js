@@ -110,7 +110,7 @@ const Trips = () => {
         <Slider
           style={styles.slider}
           minimumValue={1}
-          maximumValue={7}
+          maximumValue={30}
           minimumTrackTintColor="#ff7932"
           maximumTrackTintColor="#f63700"
           thumbTintColor="#f63700"
