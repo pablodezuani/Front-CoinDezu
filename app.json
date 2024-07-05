@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pdezuani.coindezu"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,7 +30,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "da7c70e0-73a7-4a01-a4c8-4a868b4745f3"
+        "projectId": "b7fc4d0d-f59d-4026-87b8-a9cb74c919ed"
       }
     },
     "owner": "pdezuani"

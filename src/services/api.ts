@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api =axios.create({
-    baseURL:'http://10.13.32.98:3333'
+    baseURL:'https://backend-coin-dezu.vercel.app'
 });
 
 

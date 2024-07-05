@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   Botao: {
-    backgroundColor: '#f63700',
+    backgroundColor: '#F63700',
     height: 40,
     width: 315,
     justifyContent: 'center',

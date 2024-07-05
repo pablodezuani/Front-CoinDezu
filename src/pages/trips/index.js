@@ -8,7 +8,7 @@ import Slider from '@react-native-community/slider';
 
 const Trips = () => {
   const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 54;
-  const KEY_GPT = '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'; // Insira sua chave GPT aqui
+  const KEY_GPT = 'sk-proj-XArIPziBVxK4t790CIlbT3BlbkFJTCkOGZcfMYUHtXUhLCJy'; // Insira sua chave GPT aqui
 
   const [city, setCity] = useState("");
   const [days, setDays] = useState(3);
@@ -57,9 +57,15 @@ const Trips = () => {
 
         if (!response.ok) {
           if (response.status === 429 && retries > 0) {
+            const retryAfter = response.headers.get('Retry-After');
+            const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : (2 ** (3 - retries)) * 1000;
+            console.warn(`Tentativa falhou com status 429. Retentativa em ${waitTime / 1000} segundos`);
             // Retentar após esperar algum tempo
-            await new Promise(resolve => setTimeout(resolve, (2 ** (3 - retries)) * 1000)); // Backoff exponencial
+            await new Promise(resolve => setTimeout(resolve, waitTime)); // Backoff exponencial
             return fetchTravelPlan(retries - 1);
+          } else if (response.status === 429 && retries === 0) {
+            Alert.alert("Ops :(", "Poderia tentar mais tarde.");
+            throw new Error(`Requisição à API falhou com status ${response.status}`);
           } else {
             throw new Error(`Requisição à API falhou com status ${response.status}`);
           }
@@ -75,7 +81,11 @@ const Trips = () => {
         }
       } catch (error) {
         console.error(error);
-        Alert.alert("Erro", error.message);
+        if (error.message.includes("429")) {
+          Alert.alert("Ops :(", "Poderia tentar mais tarde.");
+        } else {
+          Alert.alert("Erro", error.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -154,6 +164,7 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 20 : 20,
   },
   heading: {
+    padding: 30,
     fontSize: 28,
     fontWeight: 'bold',
     color: '#333',

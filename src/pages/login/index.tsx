@@ -109,10 +109,10 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#ffe8d3',
   },
   textreset: {
-    color: '#FFFFFF',
+    color: '#ffe8d3',
   },
   containerForm: {
     backgroundColor: '#007e80',
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginTop: 28,
-    color: '#FFFFFF',
+    color: '#ffe8d3',
   },
   input: {
     borderBottomWidth: 1,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#f63700',
+    backgroundColor: '#F63700',
     width: '100%',
     borderRadius: 18,
     paddingVertical: 8,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: '#ffe8d3',
     fontSize: 18,
     fontWeight: 'bold',
   },

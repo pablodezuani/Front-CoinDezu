@@ -58,15 +58,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 28,
     marginBottom: 12,
-    color: '#FFF', // Texto escuro para contraste
+    color: '#ffe8d3', // Texto escuro para contraste
   },
   text: {
-    color: '#FFF', // Texto escuro para contraste
+    color: '#ffe8d3', // Texto escuro para contraste
   },
   button: {
     position: 'absolute',
     borderRadius: 50,
-    backgroundColor: '#f63700',
+    backgroundColor: '#F63700',
     paddingVertical: 8,
     width: '60%',
     alignSelf: 'center',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#EFEEEE',
+    color: '#ffe8d3',
     fontWeight: 'bold',
   },
 });

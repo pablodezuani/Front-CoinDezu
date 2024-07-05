@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     alignSelf: 'center',
-    backgroundColor: '#f63700',
+    backgroundColor: '#F63700',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,

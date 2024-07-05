@@ -153,6 +153,7 @@ const GoalDetailScreen = () => {
             <TextInputMask
               style={styles.input}
               type={'money'}
+               placeholderTextColor="#AAAAAA"
               placeholder='R$ 20,00'
               options={{ precision: 2, separator: ',', delimiter: '.', unit: 'R$ ', suffixUnit: '' }}
               value={amount}
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   deleteButton: {
-    backgroundColor: '#f63700',
+    backgroundColor: '#F63700',
     padding: 10,
     borderRadius: 8,
     width: 80,
