@@ -174,7 +174,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderRadius: 4,
     color: '#ffe8d3',
     paddingRight: 30,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
   },
   inputAndroid: {
     fontSize: 16,
@@ -185,7 +185,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderRadius: 4,
     color: '#ffe8d3',
     paddingRight: 30,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
   },
   iconContainer: {
     top: 10,
@@ -196,7 +196,7 @@ const pickerSelectStyles = StyleSheet.create({
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 18,

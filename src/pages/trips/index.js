@@ -110,7 +110,7 @@ const Trips = () => {
           style={styles.input}
           value={city}
           onChangeText={(text) => setCity(text)}
-          placeholderTextColor="black"
+          placeholderTextColor="FFFFFF"
         />
 
         <View style={styles.daysContainer}>
@@ -159,7 +159,7 @@ const Trips = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
     alignItems: 'center',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 20 : 20,
   },
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#004853',
+    color: '#091440',
   },
   input: {
     marginTop: 8,
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   days: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#004853',
+    color: '#091440',
   },
   slider: {
     marginBottom: 16,

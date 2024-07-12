@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
   },
   header: {
     fontWeight: 'bold',

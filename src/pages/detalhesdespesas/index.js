@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
   },
   title: {
     fontSize: 28,
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 12,
     paddingHorizontal: 8,
-    backgroundColor: '#007e80',
+    backgroundColor: '#1A2B5C',
     borderRadius: 8,
     marginBottom: 8,
   },

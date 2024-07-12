@@ -48,6 +48,7 @@ const CadastroScreen = () => {
         <TextInput
           style={styles.input}
           placeholder="Nome"
+                    placeholderTextColor="#FFFFFF"
           value={nome}
           onChangeText={setNome}
         />
@@ -57,6 +58,7 @@ const CadastroScreen = () => {
           style={styles.input}
           placeholder="DD/MM/AAAA"
           value={dataNascimento}
+                    placeholderTextColor="#FFFFFF"
           onChangeText={(input) => formatarData(input)}
           keyboardType="numeric"
           maxLength={10}
@@ -67,6 +69,7 @@ const CadastroScreen = () => {
           style={styles.input}
           placeholder="Email"
           value={email}
+                    placeholderTextColor="#FFFFFF"
           onChangeText={setEmail}
           keyboardType="email-address"
         />
@@ -76,12 +79,13 @@ const CadastroScreen = () => {
           <TextInput
             style={styles.passwordInput}
             placeholder="Senha"
+                      placeholderTextColor="#FFFFFF"
             value={senha}
             onChangeText={setSenha}
             secureTextEntry={!mostrarSenha}
           />
           <TouchableOpacity onPress={() => setMostrarSenha(!mostrarSenha)}>
-            <AntDesign name={mostrarSenha ? 'eye' : 'eyeo'} size={24} color="black" />
+            <AntDesign name={mostrarSenha ? 'eye' : 'eyeo'} size={24} color="FFFFFF" />
           </TouchableOpacity>
         </View>
 
@@ -89,6 +93,7 @@ const CadastroScreen = () => {
         <TextInput
           style={styles.input}
           placeholder="Confirmar Senha"
+          placeholderTextColor="#FFFFFF"
           value={confirmarSenha}
           onChangeText={setConfirmarSenha}
           secureTextEntry={true}
@@ -105,7 +110,7 @@ const CadastroScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
   },
   containerHeader: {
     marginTop: '14%',
@@ -118,7 +123,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   containerform: {
-    backgroundColor: '#007e80',
+    backgroundColor: '#1A2B5C',
     flex: 1,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,

@@ -1,28 +1,46 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Linking,ActivityIndicator} from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Linking, ActivityIndicator, Modal } from 'react-native';
+import React, { useState, useContext } from 'react';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
-import { useState ,useContext} from 'react';
-import {AuthContext} from'../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Login() {
-  const{signIn,loadingAuth} = useContext(AuthContext)
-const [email ,setemail] = useState('')
-const [password ,setpassword] = useState('')
-
-async function handleLogin () {
-if (email === ''|| password === ''){
-  return;
-}
-await signIn({email,password})
-}
+  const { signIn, loadingAuth, user } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const navigation = useNavigation();
+
+  async function handleLogin() {
+    if (email === '' || password === '') {
+      return;
+    }
+    try {
+      await signIn({ email, password });
+      console.log('Token gerado:', user.token);
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 400) {
+        setModalMessage('Email ou senha incorretos');
+        setModalVisible(true);
+        setTimeout(() => {
+          setModalVisible(false);
+        }, 2000);
+      } else {
+        setModalMessage('Ocorreu um erro inesperado');
+        setModalVisible(true);
+        setTimeout(() => {
+          setModalVisible(false);
+        }, 2000);
+      }
+    }
+  }
 
   const openGoogle = () => {
     Linking.openURL('https://mail.google.com'); // Opens Gmail
   };
-
 
   const openApple = () => {
     Linking.openURL('https://www.apple.com'); // Opens Apple webpage
@@ -39,33 +57,32 @@ await signIn({email,password})
       </Animatable.View>
       <Animatable.View animation="fadeInUp" style={styles.containerForm}>
         <Text style={styles.title}>Email</Text>
-
         <TextInput 
-        placeholder='Digite seu email' 
-        style={styles.input}
-        placeholderTextColor="#f0f0f0"
-        value={email}
-        onChangeText={setemail}
-         />
+          placeholder='Digite seu email' 
+          style={styles.input}
+          placeholderTextColor="#FFFFFF"
+          value={email}
+          onChangeText={setEmail}
+        />
         <Text style={styles.title}>Senha</Text>
-
         <TextInput
-         placeholder='Digite sua senha' 
-         placeholderTextColor="#f0f0f0"
-         style={styles.input}
-         value={password}
-         onChangeText={setpassword}
-         secureTextEntry />
-
+          placeholder='Digite sua senha' 
+          placeholderTextColor="#f0f0f0"
+          style={styles.input}
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
         <TouchableOpacity style={styles.reset} onPress={() => navigation.navigate('ForgotPasswordScreen')}>
-          <Text style={styles.textreset}>Esqueceu a senha?</Text>
+          <Text style={styles.textReset}>Esqueceu a senha?</Text>
         </TouchableOpacity>
         <TouchableOpacity 
-        style={styles.button}
-         onPress={handleLogin}>
+          style={styles.button}
+          onPress={handleLogin}
+        >
           {loadingAuth ? (
-            <ActivityIndicator size={25} color="#FFF"/>
-          ):(
+            <ActivityIndicator size={25} color="#FFF" />
+          ) : (
             <Text style={styles.buttonText}>Acessar</Text>
           )}
         </TouchableOpacity>
@@ -92,6 +109,19 @@ await signIn({email,password})
           </Text>
         </View>
       </Animatable.View>
+      
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>{modalMessage}</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -99,7 +129,7 @@ await signIn({email,password})
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
   },
   containerHeader: {
     marginTop: '14%',
@@ -111,11 +141,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#ffe8d3',
   },
-  textreset: {
+  textReset: {
     color: '#ffe8d3',
   },
   containerForm: {
-    backgroundColor: '#007e80',
+    backgroundColor: '#1A2B5C',
     flex: 1,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -134,6 +164,7 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 12,
     fontSize: 16,
+    color:'#FFFFFF'
   },
   button: {
     backgroundColor: '#F63700',
@@ -152,7 +183,7 @@ const styles = StyleSheet.create({
   dividerContainer: {
     flexDirection: 'row',
     marginTop: 60,
-    marginBottom:40,
+    marginBottom: 40,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -177,9 +208,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 30,
     marginHorizontal: 10,
-    height:60,
-    width:60,
-     justifyContent: 'center',
+    height: 60,
+    width: 60,
+    justifyContent: 'center',
     alignItems: 'center',
   },
   registerContainer: {
@@ -193,7 +224,24 @@ const styles = StyleSheet.create({
   registerLink: {
     color: '#e3492b',
     fontSize: 16,
-  fontWeight:'bold',
+    fontWeight: 'bold',
     textDecorationLine: 'underline',
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: '80%',
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalText: {
+    fontSize: 18,
+    color: 'red',
   },
 });

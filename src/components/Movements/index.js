@@ -37,7 +37,7 @@ const styles = StyleSheet.create(
 flex:1,
 marginBottom:24,
 borderBottomWidth:0.5,
-backgroundColor:'#007e80'
+backgroundColor:'#1A2B5C'
 
 
         },
@@ -71,7 +71,7 @@ marginTop:2,
         },
 
         saida:{
-            backgroundColor:'#007e80',
+            backgroundColor:'#1A2B5C',
             fontSize:16,
             color:'#e74c3c',
             fontWeight:'bold'  

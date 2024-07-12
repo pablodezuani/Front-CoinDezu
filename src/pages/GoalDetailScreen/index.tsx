@@ -194,7 +194,7 @@ const GoalDetailScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
     paddingTop: 40,
   },
   header: {
@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#004853',
+    color: '#091440',
   },
   modalMessage: {
     fontSize: 16,

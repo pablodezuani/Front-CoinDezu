@@ -21,19 +21,7 @@ export default function Balance({ saldo, gastos }) {
         </View>
       </View>
 
-      <View style={styles.item}>
-        <Text style={styles.itemTitle}>Gastos</Text>
-        <View style={styles.content}>
-          <Text style={styles.currencySymbol}>R$</Text>
-          <View style={styles.content}>
-            {showValues ? (
-              <Text style={styles.gastos}>{gastos}</Text>
-            ) : (
-              <View style={styles.ocultar}></View>
-            )}
-          </View>
-        </View>
-      </View>
+      
 
       <TouchableOpacity onPress={() => setShowValues(!showValues)}>
         <Icon name={showValues ? "eye" : "eye-off"} size={24} color="#000" />
@@ -44,7 +32,7 @@ export default function Balance({ saldo, gastos }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#006170',
+    backgroundColor: '#2C3D7D',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingStart: 18,
@@ -76,11 +64,13 @@ const styles = StyleSheet.create({
   },
   balance: {
     fontSize: 18,
-    color: '#007e80',
+    color: '#2ecc71',
+    fontWeight:'bold'
   },
   gastos: {
     fontSize: 18,
     color: '#e74c3c',
+    fontWeight:'bold'
   },
   ocultar: {
     width: 54,

@@ -12,7 +12,7 @@ const {isAuthenticated,loading} = useContext(AuthContext);
 if(loading)
 return(
     <View style={{ flex:1,
-    backgroundColor:'black',
+    backgroundColor:'FFFFFF',
     justifyContent:'center',
     alignItems:'center'
     }}>

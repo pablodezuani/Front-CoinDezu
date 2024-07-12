@@ -37,17 +37,17 @@ export default function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#004853', // Cor de fundo clara
+    backgroundColor: '#091440', // Cor de fundo clara
   },
   containerLogo: {
     flex: 2,
-    backgroundColor: '#004853', // Cor de fundo clara
+    backgroundColor: '#091440', // Cor de fundo clara
     justifyContent: 'center',
     alignItems: 'center',
   },
   containerForm: {
     flex: 1,
-    backgroundColor: '#007e80',
+    backgroundColor: '#1A2B5C',
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingStart: '5%',

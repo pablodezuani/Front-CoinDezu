@@ -57,7 +57,7 @@ export default function Header() {
             {selectedImage ? (
               <Image source={{ uri: selectedImage }} style={styles.userImage} />
             ) : (
-              <Feather name="user" size={27} color="black" />
+              <Feather name="user" size={27} color="FFFFFF" />
             )}
           </TouchableOpacity>
           <View style={styles.userText}>
@@ -99,7 +99,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#004853',
+    backgroundColor: '#091440',
     paddingTop: statusBarHeight,
     paddingHorizontal: 16,
     paddingBottom: 40,

@@ -68,7 +68,7 @@ export default function Actions() {
 
       <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisibleCartao(true)}>
         <View style={styles.ButtonArea}>
-          <AntDesign name="creditcard" size={24} color="black" />
+          <AntDesign name="creditcard" size={24} color="FFFFFF" />
         </View>
         <Text style={styles.buttonlabel}>Cartão</Text>
       </TouchableOpacity>
@@ -85,7 +85,7 @@ export default function Actions() {
             <TouchableWithoutFeedback>
               <View style={styles.modalContent}>
                 <TouchableOpacity onPress={() => setModalVisibleEntradas(false)} style={styles.closeIcon}>
-                  <Feather name="x" size={24} color="black" />
+                  <Feather name="x" size={24} color="FFFFFF" />
                 </TouchableOpacity>
                 <Text style={styles.Titlehome}>Adicione a Sua Entrada</Text>
                 <Text style={styles.Select}>Tipo de entrada</Text>
@@ -134,7 +134,7 @@ export default function Actions() {
             <View style={styles.modalContent}>
               <Text>Conteúdo do modal para Boleto</Text>
               <TouchableOpacity onPress={() => setModalVisibleBoleto(false)} style={styles.closeIcon}>
-                <Feather name="x" size={24} color="black" />
+                <Feather name="x" size={24} color="FFFFFF" />
               </TouchableOpacity>
             </View>
           </View>
@@ -154,7 +154,7 @@ export default function Actions() {
           <View style={styles.modalBackground}>
             <View style={styles.modalContent}>
               <TouchableOpacity onPress={() => setModalVisiblePix(false)} style={styles.closeIcon}>
-                <Feather name="x" size={24} color="black" />
+                <Feather name="x" size={24} color="FFFFFF" />
               </TouchableOpacity>
               <Text style={styles.Titlehome}>Adicione o Pix</Text>
               <Text style={styles.Select}>Nome da entrada</Text>
@@ -175,7 +175,7 @@ export default function Actions() {
             <View style={styles.modalContent}>
               <Text>Conteúdo do modal para Cartão</Text>
               <TouchableOpacity onPress={() => setModalVisibleCartao(false)} style={styles.closeIcon}>
-                <Feather name="x" size={24} color="black" />
+                <Feather name="x" size={24} color="FFFFFF" />
               </TouchableOpacity>
             </View>
           </View>
@@ -187,12 +187,12 @@ export default function Actions() {
 
 const styles = StyleSheet.create({
   container: {
-    maxHeight: 84,
+    maxHeight: 130,
     marginBottom: 14,
     marginTop: 18,
     paddingEnd: 14,
     paddingStart: 14,
-    backgroundColor: '#007e80'
+    backgroundColor: '#1A2B5C'
   },
   actionButton: {
     alignItems: 'center',
@@ -207,8 +207,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonlabel: {
-    marginTop: 8,
-    textAlign: 'center'
+    marginTop: 10,
+    textAlign: 'center',
+    fontWeight:'bold',
+   color:'#FFFFF'
   },
   modalBackground: {
     flex: 1,
@@ -218,7 +220,7 @@ const styles = StyleSheet.create({
     padding: 25,
   },
   modalContent: {
-    backgroundColor: '#007e80',
+    backgroundColor: '#1A2B5C',
     padding: 20,
     borderRadius: 18,
     elevation: 5,
@@ -234,7 +236,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'white'
+    color: '#FFFFF'
   },
   Select: {
     marginTop: 24,
