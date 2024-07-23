@@ -20,11 +20,8 @@ export default function Balance({ saldo, gastos }) {
           </View>
         </View>
       </View>
-
-      
-
       <TouchableOpacity onPress={() => setShowValues(!showValues)}>
-        <Icon name={showValues ? "eye" : "eye-off"} size={24} color="#000" />
+        <Icon name={showValues ? "eye" : "eye-off"} size={24} color="#FFF" />
       </TouchableOpacity>
     </View>
   );
@@ -52,7 +49,7 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 18,
     color: '#ffe8d3',
-    marginBottom:8,
+    marginBottom: 8,
   },
   content: {
     flexDirection: 'row',
@@ -65,16 +62,11 @@ const styles = StyleSheet.create({
   balance: {
     fontSize: 18,
     color: '#2ecc71',
-    fontWeight:'bold'
-  },
-  gastos: {
-    fontSize: 18,
-    color: '#e74c3c',
-    fontWeight:'bold'
+    fontWeight: 'bold',
   },
   ocultar: {
-    width: 54,
-    height: 22,
+    width: 80, // Largura ajustada para corresponder ao segundo componente
+    height: 22, // Altura ajustada para corresponder ao segundo componente
     backgroundColor: '#DADADA',
     borderRadius: 8,
   },

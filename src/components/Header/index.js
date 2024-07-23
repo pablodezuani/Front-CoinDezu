@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: 'white',
-    padding: 20,
-    height: 180,
+    padding: 10,
+    height: 160,
     width: 200,
     borderRadius: 16,
     alignItems: 'center',
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     marginVertical: 50,
   },
   modalTitle: {
-    fontSize: 14,
+    fontSize: 15,
     marginBottom: 20,
     fontWeight: 'bold',
     color: '#121212',
@@ -163,7 +163,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     fontWeight:'bold',
-    marginBottom: 15,
+    fontSize: 12,
+    marginBottom: 12,
   },
   modalOptionText: {
     marginLeft: 10,
@@ -176,7 +177,8 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
   },
   cancelButtonText: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'red',
+    fontWeight:'bold',
   },
 });

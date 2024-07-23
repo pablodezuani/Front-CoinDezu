@@ -98,7 +98,7 @@ export default function HomeScreen() {
               ]}
               style={pickerSelectStyles}
               placeholder={{ label: "Selecione o ano", value: null }}
-              Icon={() => <Icon name="calendar-today" size={24} color="#ffe8d3" />}
+              Icon={() => <Icon name="calendar-today" size={22} color="#ffe8d3" />}
             />
           </View>
         </View>
@@ -121,7 +121,7 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      {filteredData && (
+      {selectedExpense && filteredData && (
         <View style={styles.chartContainer}>
           <LineChart
             data={filteredData}
@@ -133,33 +133,32 @@ export default function HomeScreen() {
               backgroundColor: selectedColors.backgroundGradientFrom,
               backgroundGradientFrom: selectedColors.backgroundGradientFrom,
               backgroundGradientTo: selectedColors.backgroundGradientTo,
-              color: (opacity = 25) => `rgba(255, 255, 255, ${opacity})`,
-              labelColor: (opacity = 12) => `rgba(255, 255, 255, ${opacity})`,
+              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
               style: {
                 borderRadius: 16,
+                padding: 10,
               },
               propsForDots: {
-                r: "8",
-                strokeWidth: "4",
+                r: "6",
+                strokeWidth: "2",
                 stroke: "#ffa726",
                 fill: "#FFF",
               },
               propsForBackgroundLines: {
-                stroke: "#121212",
-                strokeDasharray: "",
+                stroke: "#444",
               }
             }}
             bezier
             style={{
               marginVertical: 30,
-              borderRadius: 14,
+              borderRadius: 16,
             }}
             xLabelsOffset={-1}
             onDataPointClick={handlePointClick}
           />
         </View>
       )}
-
     </ScrollView>
   );
 }
@@ -170,22 +169,22 @@ const pickerSelectStyles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: '#ffe8d3',
-    borderRadius: 4,
-    color: '#ffe8d3',
+    borderColor: '#FFF',
+    borderRadius: 8,
+    color: '#FFF',
     paddingRight: 30,
-    backgroundColor: '#091440',
+    backgroundColor: '#1D70C0',
   },
   inputAndroid: {
     fontSize: 16,
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: '#ffe8d3',
-    borderRadius: 4,
-    color: '#ffe8d3',
+    borderColor: '#FFF',
+    borderRadius: 8,
+    color: '#FFF',
     paddingRight: 30,
-    backgroundColor: '#091440',
+    backgroundColor: '#1D70C0',
   },
   iconContainer: {
     top: 10,
@@ -198,14 +197,14 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: '#091440',
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 18,
+    padding: 20,
   },
   headerContainer: {
-    backgroundColor: '#1c313a',
-    padding: 10,
+    backgroundColor: '#2C3D7D',
+    padding: 15,
     borderRadius: 10,
     marginBottom: 20,
+    marginTop: 50,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
@@ -226,17 +225,16 @@ const styles = StyleSheet.create({
     width: '48%',
   },
   title: {
-    fontSize: 20,
-    marginBottom: 15,
-    alignItems: 'flex-start',
+    fontSize: 18,
+    marginBottom: 10,
     color: '#ffe8d3',
   },
   pickerContainer: {
-    width: '100%',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   chartContainer: {
     width: '100%',
     alignItems: 'center',
+    marginTop: 20,
   }
 });

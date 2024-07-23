@@ -33,42 +33,42 @@ export default function Actions() {
       {/* Botões para abrir cada modal */}
       <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisibleEntradas(true)}>
         <View style={styles.ButtonArea}>
-          <AntDesign name="plussquare" size={24} color="#8C2A96" />
+          <AntDesign name="plussquare" size={24} color="#091440" />
         </View>
         <Text style={styles.buttonlabel}>Entradas</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => navigation.navigate('box')}>
         <View style={styles.ButtonArea}>
-          <AntDesign name="piechart" size={24} color="#8C2A96" />
+          <AntDesign name="piechart" size={24} color="#091440" />
         </View>
         <Text style={styles.buttonlabel}>Caixinha</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => navigation.navigate('Trips')}>
         <View style={styles.ButtonArea}>
-          <AntDesign name="barcode" size={24} color="#8C2A96" />
+          <AntDesign name="barcode" size={24} color="#091440" />
         </View>
         <Text style={styles.buttonlabel}>Viagem</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => navigation.navigate('expenses')}>
         <View style={styles.ButtonArea}>
-          <AntDesign name="shoppingcart" size={24} color="#8C2A96" />
+          <AntDesign name="shoppingcart" size={24} color="#091440" />
         </View>
         <Text style={styles.buttonlabel}>Despesas</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisiblePix(true)}>
         <View style={styles.ButtonArea}>
-          <AntDesign name="tagso" size={24} color="#8C2A96" />
+          <AntDesign name="tagso" size={24} color="#091440" />
         </View>
         <Text style={styles.buttonlabel}>Pix</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisibleCartao(true)}>
         <View style={styles.ButtonArea}>
-          <AntDesign name="creditcard" size={24} color="FFFFFF" />
+          <AntDesign name="creditcard" size={24} color="091440" />
         </View>
         <Text style={styles.buttonlabel}>Cartão</Text>
       </TouchableOpacity>
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center',
     fontWeight:'bold',
-   color:'#FFFFF'
+   color:'#FFF'
   },
   modalBackground: {
     flex: 1,
