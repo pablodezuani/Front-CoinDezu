@@ -9,7 +9,7 @@ import { TextInputMask } from 'react-native-masked-text';
 
 const GoalItem = ({ title, total, saved, onPress }) => {
   const percentSaved = ((saved / total) * 100).toFixed(2);
-  
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.goalTouchable}>
       <Card style={styles.goalCard}>
@@ -61,6 +61,7 @@ const Box = () => {
     if (newGoalTitle && newGoalTotal) {
       try {
         const token = await AsyncStorage.getItem('userToken');
+        console.log('Token:', token); // Adicione isso para depuração
         const response = await axios.post('https://backend-coin-dezu.vercel.app/metas', {
           name: newGoalTitle,
           target_amount: parseFloat(newGoalTotal.replace(/[^\d]+/g, '')),
@@ -69,7 +70,7 @@ const Box = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-
+  
         setGoals([...goals, response.data]);
         setModalVisible(false);
         setNewGoalTitle('');
@@ -85,19 +86,23 @@ const Box = () => {
       <View style={styles.container}>
         <Text style={styles.mainTitle}>Minhas Metas</Text>
         <ScrollView horizontal contentContainerStyle={styles.scrollViewContent}>
-          {goals.map((goal) => (
-            <GoalItem
-              key={goal.id} // Use o ID único da meta
-              title={goal.name}
-              total={goal.target_amount}
-              saved={goal.saved_amount}
-              onPress={() => navigation.navigate('GoalDetailScreen', { goal })}
-            />
-          ))}
+          {goals.length > 0 ? (
+            goals.map((goal) => (
+              <GoalItem
+                key={goal.id}
+                title={goal.name}
+                total={goal.target_amount}
+                saved={goal.saved_amount}
+                onPress={() => navigation.navigate('GoalDetailScreen', { goal })}
+              />
+            ))
+          ) : (
+            <Text style={styles.noGoalsText}>Não há metas</Text>
+          )}
         </ScrollView>
 
         <TouchableOpacity style={styles.addButton} onPress={() => setModalVisible(true)}>
-          <Ionicons name="add-outline" size={32} color="#ffe8d3F" />
+          <Ionicons name="add-outline" size={32} color="#ffe8d3" />
         </TouchableOpacity>
 
         <Modal animationType="slide" transparent visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
@@ -223,6 +228,12 @@ const styles = StyleSheet.create({
   amountContainer: {
     marginTop: 10,
     flexDirection: 'column',
+  },
+  noGoalsText: {
+    fontSize: 18,
+    color: '#ffe8d3',
+    textAlign: 'center',
+    marginTop: 20,
   },
   modalContainer: {
     flex: 1,
